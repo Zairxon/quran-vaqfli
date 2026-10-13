@@ -95,7 +95,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="t"></div>
 <button id="ver" type="button"></button>
 <script>
-const VER='1.7',IMGV=3;
+const VER='1.8',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
@@ -113,7 +113,8 @@ const sv=(k,x)=>{try{localStorage.setItem(k,x)}catch(e){}};
 try{marks=JSON.parse(lg('qbm','{}'))||{}}catch(e){marks={}}
 const old=+lg('qm',0);if(old&&!marks[old]){marks[old]={c:0,t:''};sv('qbm',JSON.stringify(marks))}
 fit=lg('qf','w');v.className=fit==='h'?'fh':'fw';
-const src=i=>'pages/p-'+String(i-1).padStart(3,'0')+'.jpg?v='+IMGV;
+const REST=new Set([3,4,5,9,11,13,14,18,26,27,37,38,40,52,53,54,78,84,101,104,108,123,125,134,135,138,139,142,143,146,160,161,169,178,180,182,192,193,194,197,200,210,211,219,222,231,239,244,251,257,265,270,280,281,284,285,296,298,308,317,318,324,328,330,333,344,355,359,360,366,379,381,382,390,397,398,399,400,406,408,413,422,426,432,434,436,438,454,456,459,464,468,471,475,480,485,488,491,500,501,505,506,512,513,517,541,544,545,547,551,552,555,559,576,599]);
+const src=i=>'pages/p-'+String(i-1).padStart(3,'0')+'.jpg?v='+IMGV+(REST.has(i)?'r':'');
 function ribbon(c){const s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 30"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset=".45" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient><filter id="f" x="-40%" y="-10%" width="180%" height="150%"><feDropShadow dx="1" dy="1.6" stdDeviation="1.1" flood-opacity=".6"/></filter></defs><g filter="url(#f)"><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="'+c+'"/><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="url(#g)"/></g></svg>';return 'url("data:image/svg+xml,'+encodeURIComponent(s)+'")'}
 function toast(m){tt.textContent=m;tt.style.opacity=1;clearTimeout(toast.h);toast.h=setTimeout(()=>tt.style.opacity=0,1800)}
 function draw(){
