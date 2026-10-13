@@ -11,7 +11,7 @@
 <style>
 :root{--c0:#1a100b;--c1:#2a1c15;--c2:#3b2a21;--c3:#4f372b;--edge:rgba(212,165,116,.34);--car:#d4a574;--car2:#b8844f;--cream:#f4e8d6;--tx:#ecdcc6;--mut:#b99d82;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;color:var(--tx);font-family:var(--serif);overflow:hidden;-webkit-tap-highlight-color:transparent;
+html,body{overscroll-behavior:none;margin:0;height:100%;color:var(--tx);font-family:var(--serif);overflow:hidden;-webkit-tap-highlight-color:transparent;
  background:radial-gradient(ellipse 120% 80% at 50% 0%,#3d2b21 0%,#27180f 55%,#1a100b 100%) fixed}
 svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 #bar{position:fixed;top:0;left:0;right:0;min-height:32px;z-index:5;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:4px 8px;padding:3px 8px;
@@ -32,7 +32,7 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
 #cm{max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px;font-weight:bold;font-style:normal;padding:0 10px;height:23px;line-height:21px;border-radius:15px;border:1px solid var(--edge);color:var(--car);background:rgba(212,165,116,.1)}
 #sr{justify-self:end;max-width:min(250px,32vw);overflow:hidden;color:var(--car);font-size:13px;font-weight:bold}
 #sr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#v{position:absolute;top:0;bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px 10px 30px;scrollbar-color:#6b4d3c #24170f}
+#v{touch-action:pan-y pinch-zoom;overscroll-behavior:contain;position:absolute;top:0;bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px 10px 30px;scrollbar-color:#6b4d3c #24170f}
 #v::-webkit-scrollbar{width:10px}#v::-webkit-scrollbar-track{background:#24170f}#v::-webkit-scrollbar-thumb{background:#6b4d3c;border-radius:6px;border:2px solid #24170f}
 #sheet{position:relative;width:fit-content;margin:0 auto;background:#fff url(frame4.jpg) center/106% 106% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
  box-shadow:0 0 0 1px rgba(212,165,116,.28),0 14px 40px rgba(8,3,1,.65),0 3px 8px rgba(8,3,1,.5)}
@@ -102,7 +102,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
 <script>
-const VER='2.4',IMGV=3;
+const VER='2.5',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
