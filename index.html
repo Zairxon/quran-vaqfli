@@ -16,7 +16,8 @@ html,body{margin:0;height:100%;color:var(--tx);font-family:var(--serif);overflow
 svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 #bar{position:fixed;top:0;left:0;right:0;min-height:32px;z-index:5;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:4px 8px;padding:3px 8px;
  background:linear-gradient(180deg,#54392d 0%,#3a281f 55%,#2e2019 100%);border-bottom:1px solid var(--edge);
- box-shadow:inset 0 1px 0 rgba(255,235,210,.14),0 8px 22px rgba(10,5,2,.55)}
+ box-shadow:inset 0 1px 0 rgba(255,235,210,.14),0 8px 22px rgba(10,5,2,.55);transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s ease}
+#bar.h{transform:translateY(-115%);opacity:0;pointer-events:none}
 #mid{display:flex;align-items:center;gap:8px}
 .b{height:26px;min-width:26px;padding:0 9px;border-radius:13px;border:1px solid var(--edge);color:var(--cream);font-size:12.5px;font-family:var(--serif);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;
  background:linear-gradient(180deg,#654637,#47322a);box-shadow:inset 0 1px 0 rgba(255,235,210,.2),0 2px 6px rgba(10,5,2,.45);transition:transform .08s,filter .15s}
@@ -31,7 +32,7 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
 #cm{max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px;font-weight:bold;font-style:normal;padding:0 10px;height:23px;line-height:21px;border-radius:15px;border:1px solid var(--edge);color:var(--car);background:rgba(212,165,116,.1)}
 #sr{justify-self:end;max-width:min(250px,32vw);overflow:hidden;color:var(--car);font-size:13px;font-weight:bold}
 #sr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#v{position:absolute;top:var(--bh,50px);bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:4px 10px 30px;scrollbar-color:#6b4d3c #24170f}
+#v{position:absolute;top:0;bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px 10px 30px;scrollbar-color:#6b4d3c #24170f}
 #v::-webkit-scrollbar{width:10px}#v::-webkit-scrollbar-track{background:#24170f}#v::-webkit-scrollbar-thumb{background:#6b4d3c;border-radius:6px;border:2px solid #24170f}
 #sheet{position:relative;width:fit-content;margin:0 auto;background:#fff url(frame4.jpg) center/106% 106% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
  box-shadow:0 0 0 1px rgba(212,165,116,.28),0 14px 40px rgba(8,3,1,.65),0 3px 8px rgba(8,3,1,.5)}
@@ -94,7 +95,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
 <script>
-const VER='2.0',IMGV=3;
+const VER='2.1',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
@@ -103,7 +104,7 @@ const START=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,3
 const PM="1;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3,4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4,5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;8;8;8;8;8;8;8;8;8;8;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9,10;10;10;10;10;10;10;10;10;10;10;10;10;10;10,11;11;11;11;11;11;11;11;11;11;11;11;11;11;11,12;12;12;12;12;12;12;12;12;12;12;12;12;12;13;13;13;13;13;13;13,14;14;14;14;14;14;14;15;15;15;15;15;15,16;16;16;16;16;16;16;16;16;16;16;16;16;16;16;17;17;17;17;17;17;17;17;17;17;17;17,18;18;18;18;18;18;18;18;18;18;18;18;19;19;19;19;19;19;19;19,20;20;20;20;20;20;20;20;20;20;21;21;21;21;21;21;21;21;21;21,22;22;22;22;22;22;22;22;22;22;22,23;23;23;23;23;23;23;23;23,24;24;24;24;24;24;24;24;24;24;24,25;25;25;25;25;25;25;25,26;26;26;26;26;26;26;26;26;26;26,27;27;27;27;27;27;27;27;27;27,28;28;28;28;28;28;28;28;28;28;28;28,29;29;29;29;29;29;29;29;29,30;30;30;30;30;30;30;31;31;31;31,32;32;32;32,33;33;33;33;33;33;33;33;33;33;33;34;34;34;34;34;34;34,35;35;35;35;35;35;35,36;36;36;36;36;36,37;37;37;37;37;37;37;37,38;38;38;38;38;38;38,39;39;39;39;39;39;39;39;39;39,40;40;40;40;40;40;40;40;40;40;41;41;41;41;41;41;42;42;42;42;42;42;42,43;43;43;43;43;43;43;44;44;44,45;45;45;45;45,46;46;46;46;46,47;47;47;47;47;48;48;48;48;48,49;49;49;50;50;50,51;51;51;51,52;52;52,53;53;53;53,54;54;54;54,55;55;55;55,56;56;56;56,57;57;57;57;57;58;58;58;58,59;59;59;59,60;60;60;60,61;61;62;62,63;63,64;64;64,65;65;65;66;66;67;67;67,68;68;68,69;69;69,70;70;70,71;71;72;72;73;73,74;74;74,75;75,76;76;76,77;77;78;78,79;79,80;80;81,82;82,83;83;83,84;85,86;86,87;87,88;89;89,90,91;91,92;92,93,94;95,96;97,98;98,99,100;100,101,102;103,104,105;106,107,108;109,110,111;112,113,114".split(';').map(x=>x.split(',').map(Number));
 const NOCROP=[104,193,434];
 const bar=$('bar');
-function setBH(){document.documentElement.style.setProperty('--bh',bar.offsetHeight+'px')}
+function setBH(){document.documentElement.style.setProperty('--bh','0px')}
 if(window.ResizeObserver)new ResizeObserver(setBH).observe(bar);addEventListener('resize',setBH);setBH();
 const COL=['#d63a3a','#1f9d55','#2f6fdc','#e0a100','#8e44ad','#e8702a'];
 let cur=1,marks={},fit='w';
@@ -115,7 +116,7 @@ fit=lg('qf','w');v.className=fit==='h'?'fh':'fw';
 const REST=new Set([3,4,5,9,11,13,14,18,26,27,37,38,40,52,53,54,78,84,101,104,108,123,125,134,135,138,139,142,143,146,160,161,169,178,180,182,192,193,194,197,200,210,211,219,222,231,239,244,251,257,265,270,280,281,284,285,296,298,308,317,318,324,328,330,333,344,355,359,360,366,379,381,382,390,397,398,399,400,406,408,413,422,426,432,434,436,438,454,456,459,464,468,471,475,480,485,488,491,500,501,505,506,512,513,517,541,544,545,547,551,552,555,559,576,599]);
 const src=i=>'pages/p-'+String(i-1).padStart(3,'0')+'.jpg?v='+IMGV+(REST.has(i)?'r':'');
 function ribbon(c){const s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 30"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset=".45" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient><filter id="f" x="-40%" y="-10%" width="180%" height="150%"><feDropShadow dx="1" dy="1.6" stdDeviation="1.1" flood-opacity=".6"/></filter></defs><g filter="url(#f)"><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="'+c+'"/><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="url(#g)"/></g></svg>';return 'url("data:image/svg+xml,'+encodeURIComponent(s)+'")'}
-function toast(m){tt.textContent=m;tt.style.opacity=1;clearTimeout(toast.h);toast.h=setTimeout(()=>tt.style.opacity=0,1800)}
+function toast(m,ms){tt.textContent=m;tt.style.opacity=1;clearTimeout(toast.h);toast.h=setTimeout(()=>tt.style.opacity=0,ms||1800)}
 function draw(){
   const m=marks[cur];
   rib.style.display=m?'block':'none';
@@ -142,6 +143,22 @@ let sx=null,sy=0,stt=0;
 v.addEventListener('touchstart',e=>{if(e.touches.length!==1){sx=null;return}sx=e.touches[0].clientX;sy=e.touches[0].clientY;stt=Date.now()},{passive:true});
 v.addEventListener('touchend',e=>{if(sx===null)return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;sx=null;
   if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6&&Date.now()-stt<700)show(cur+(dx<0?1:-1))},{passive:true});
+// Панель скрыта: двойное касание левого верхнего угла показывает её, прокрутка страницы скрывает
+function showBar(){bar.classList.remove('h')}
+function hideBar(){bar.classList.add('h')}
+let tapT=0,tapX=0,tapY=0,pd=null,ty=null;
+v.addEventListener('pointerdown',e=>{pd={x:e.clientX,y:e.clientY,t:Date.now()}},{passive:true});
+v.addEventListener('pointerup',e=>{
+  if(!pd)return;const dx=e.clientX-pd.x,dy=e.clientY-pd.y,dt=Date.now()-pd.t;pd=null;
+  if(Math.abs(dx)>12||Math.abs(dy)>12||dt>350)return;
+  if(e.clientX>96||e.clientY>96){tapT=0;return}
+  const now=Date.now();
+  if(now-tapT<450&&Math.abs(e.clientX-tapX)<40&&Math.abs(e.clientY-tapY)<40){tapT=0;bar.classList.contains('h')?showBar():hideBar()}
+  else{tapT=now;tapX=e.clientX;tapY=e.clientY}
+});
+v.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>2)hideBar()},{passive:true});
+v.addEventListener('touchstart',e=>{ty=e.touches.length===1?e.touches[0].clientY:null},{passive:true});
+v.addEventListener('touchmove',e=>{if(ty!==null&&Math.abs(e.touches[0].clientY-ty)>10){ty=null;hideBar()}},{passive:true});
 function open(node){pn.innerHTML='';pn.appendChild(node);sh.classList.add('on')}
 function close(){sh.classList.remove('on')}
 sh.addEventListener('click',e=>{if(e.target===sh)close()});
@@ -190,7 +207,8 @@ $('sr').onclick=()=>{
   const r=el('div','row');const cn=el('button','b','Закрыть');cn.onclick=close;r.appendChild(cn);w.appendChild(r);
   open(w);setTimeout(()=>{const c=lst.querySelector('.cu');if(c)c.scrollIntoView({block:'center'})},50);
 };
-const s0=+lg('qp',1)||1;show(s0);if(s0>1)toast('Продолжаем со стр. '+s0);
+bar.classList.add('h');
+const s0=+lg('qp',1)||1;show(s0);const hc=+lg('qh',0);if(hc<3){sv('qh',hc+1);setTimeout(()=>toast('Панель: дважды коснитесь левого верхнего угла',4200),900)}if(s0>1)toast('Продолжаем со стр. '+s0);
 let newer=false,busy=false;
 function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?'Обновляю…':newer?'↻ Есть обновление':'v'+VER}
 async function hardRefresh(){
@@ -201,7 +219,7 @@ async function hardRefresh(){
 }
 async function checkVer(){
   try{const r=await fetch('./version.json?'+Date.now(),{cache:'no-store'});if(!r.ok)return;const j=await r.json();
-    const n=!!j.v&&j.v!==VER;if(n!==newer){newer=n;drawVer();if(n)toast('Есть обновление')}}catch(e){}
+    const n=!!j.v&&j.v!==VER;if(n!==newer){newer=n;drawVer();if(n){toast('Есть обновление');showBar()}}}catch(e){}
 }
 $('ver').onclick=async()=>{if(newer)return hardRefresh();await checkVer();toast(newer?'Есть обновление':'Версия '+VER+' — последняя')};
 drawVer();checkVer();setInterval(checkVer,5*60e3);
