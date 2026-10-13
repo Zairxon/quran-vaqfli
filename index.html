@@ -103,7 +103,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
 <script>
-const VER='2.8',IMGV=3;
+const VER='2.9',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
@@ -239,7 +239,7 @@ $('sr').onclick=()=>{
       if(k&&!(String(i).startsWith(k)||words(UZ[i-1]).some(x=>x.startsWith(k))||words(UZC[i-1]).some(x=>x.startsWith(k))||words(RU[i-1]).some(x=>x.startsWith(k))||words(EN[i-1]).some(x=>x.startsWith(k))))continue;
       const r=el('div','su'+(here.includes(i)?' cu':''));
       r.appendChild(el('div','no',String(i)));
-      const nmEl=el('div','nm');nmEl.appendChild(el('b',null,nm(i)));nmEl.appendChild(el('small',null,nm2(i)));r.appendChild(nmEl);
+      const nmEl=el('div','nm');nmEl.appendChild(el('b',null,nm(i)));r.appendChild(nmEl);
       r.appendChild(el('div','pg',t('page',{n:START[i-1]})));
       r.onclick=()=>{close();show(START[i-1])};lst.appendChild(r);n++;
     }
