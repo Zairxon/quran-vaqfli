@@ -33,7 +33,7 @@ svg.i{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke
 #sr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #v{position:absolute;top:var(--bh,50px);bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:4px 10px 30px;scrollbar-color:#6b4d3c #24170f}
 #v::-webkit-scrollbar{width:10px}#v::-webkit-scrollbar-track{background:#24170f}#v::-webkit-scrollbar-thumb{background:#6b4d3c;border-radius:6px;border:2px solid #24170f}
-#sheet{position:relative;width:fit-content;margin:0 auto;background:#fff url(frame2.jpg) center/106% 106% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
+#sheet{position:relative;width:fit-content;margin:0 auto;background:#fff url(frame3.jpg) center/106% 106% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
  box-shadow:0 0 0 1px rgba(212,165,116,.28),0 14px 40px rgba(8,3,1,.65),0 3px 8px rgba(8,3,1,.5)}
 #v.fw #sheet{width:min(100%,1000px)}
 #v.fw img{width:100%;height:auto}
@@ -71,15 +71,15 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 .sub{margin:10px 0 3px;padding-top:7px;border-top:1px solid rgba(212,165,116,.22);text-align:center;color:var(--mut);font-size:11.5px;letter-spacing:.7px;text-transform:uppercase}
 .em{text-align:center;color:var(--mut);padding:16px;font-style:italic}
 #t{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(34,21,15,.94);color:var(--cream);border:1px solid var(--edge);padding:9px 18px;border-radius:20px;z-index:12;opacity:0;transition:opacity .3s;pointer-events:none;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
-#ver{position:fixed;left:10px;bottom:10px;z-index:9;font-size:12px;border-radius:15px;padding:5px 12px;border:1px solid var(--edge);background:rgba(34,21,15,.86);color:var(--mut);font-family:var(--serif);opacity:.75}
-#ver.new{opacity:1;background:linear-gradient(180deg,#e6bf91,#bd8750);color:#2a1a10;border-color:rgba(255,255,255,.7);font-size:14px;font-weight:bold;padding:9px 16px;box-shadow:0 5px 18px rgba(0,0,0,.6)}
+#ver{justify-self:start;align-self:center;font-size:10.5px;line-height:1;border-radius:10px;padding:4px 8px;border:1px solid var(--edge);background:rgba(34,21,15,.6);color:var(--mut);font-family:var(--serif);opacity:.8;cursor:pointer;white-space:nowrap}
+#ver.new{opacity:1;background:linear-gradient(180deg,#e6bf91,#bd8750);color:#2a1a10;border-color:rgba(255,255,255,.65);font-size:11px;font-weight:bold;padding:5px 9px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
 @media (max-width:860px){#ls span{display:none}}
-@media (max-width:720px){#bar{grid-template-columns:1fr}#bar>span{display:none}#mid{flex-wrap:wrap;justify-content:center;gap:7px}#cm{flex-basis:100%;max-width:100%;text-align:center}#sr{justify-self:center;max-width:100%}.cell{padding:0 10px 0 5px;gap:5px}.cell input{width:48px}.b{padding:0 10px}}
+@media (max-width:720px){#bar{grid-template-columns:1fr}#ver{position:absolute;top:3px;left:6px}#ver.new{position:static;justify-self:start}#mid{flex-wrap:wrap;justify-content:center;gap:7px}#cm{flex-basis:100%;max-width:100%;text-align:center}#sr{justify-self:center;max-width:100%}.cell{padding:0 10px 0 5px;gap:5px}.cell input{width:48px}.b{padding:0 10px}}
 </style>
 </head>
 <body>
 <div id="bar">
- <span></span>
+ <button id="ver" type="button"></button>
  <div id="mid">
   <button class="b" id="prev" aria-label="Oldingi"><svg class="i" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
   <div class="cell"><input id="n" type="number" min="1" max="604" value="1"><small>/ 604</small></div>
@@ -93,9 +93,8 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="v" class="fw"><div id="sheet"><img id="pg" alt=""><div id="rib"></div></div></div>
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
-<button id="ver" type="button"></button>
 <script>
-const VER='1.8',IMGV=3;
+const VER='1.9',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
@@ -193,7 +192,7 @@ $('sr').onclick=()=>{
 };
 const s0=+lg('qp',1)||1;show(s0);if(s0>1)toast('Продолжаем со стр. '+s0);
 let newer=false,busy=false;
-function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?'Обновляю…':newer?'Есть обновление — обновить':'Версия '+VER}
+function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?'Обновляю…':newer?'↻ Есть обновление':'v'+VER}
 async function hardRefresh(){
   newer=false;busy=true;drawVer();
   try{const rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(r=>r.unregister()))}catch(e){}
