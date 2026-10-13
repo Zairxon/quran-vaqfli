@@ -42,21 +42,21 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 #rib{position:absolute;top:0;right:24px;width:21px;height:42px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
 #sh{position:fixed;inset:0;background:rgba(18,9,5,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:10;display:none;align-items:center;justify-content:center;padding:12px}
 #sh.on{display:flex}
-.pn{width:min(460px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#4a3328,#2c1e17);border:1px solid var(--edge);border-radius:20px;padding:12px 14px 12px;
+.pn{width:min(380px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#4a3328,#2c1e17);border:1px solid var(--edge);border-radius:20px;padding:12px 14px 12px;
  box-shadow:inset 0 1px 0 rgba(255,235,210,.14),0 20px 60px rgba(5,2,0,.75)}
-.pn h3{margin:0 0 8px;text-align:center;font-weight:normal;font-size:17px;letter-spacing:.8px;color:var(--car)}
+.pn h3{margin:0 0 6px;text-align:center;font-weight:normal;font-size:16px;letter-spacing:.8px;color:var(--car)}
 .pn h3::after{content:"";display:block;width:56px;height:2px;margin:5px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,var(--car),transparent)}
-.sw{display:flex;justify-content:center;gap:14px;margin:10px 0 16px}
-.sw i{width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,.15);box-shadow:inset 0 2px 3px rgba(255,255,255,.45),0 2px 5px rgba(0,0,0,.6);cursor:pointer;transition:transform .12s}
+.sw{display:flex;justify-content:center;gap:11px;margin:6px 0 10px}
+.sw i{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.15);box-shadow:inset 0 2px 3px rgba(255,255,255,.45),0 2px 5px rgba(0,0,0,.6);cursor:pointer;transition:transform .12s}
 .sw i.s{border-color:#fff;transform:scale(1.18)}
 .pn input[type=text],.sq{width:100%;height:36px;border-radius:18px;border:1px solid var(--edge);background:linear-gradient(180deg,#fbf2e3,#ecdcc3);color:#3a2820;padding:0 16px;font-size:15px;font-family:var(--serif);box-shadow:inset 0 2px 4px rgba(90,60,40,.25)}
 .pn input[type=text]:focus,.sq:focus{outline:none;box-shadow:0 0 0 3px rgba(212,165,116,.5)}
 .sq{margin-bottom:6px}
-.row{display:flex;gap:10px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.row{display:flex;gap:8px;justify-content:center;margin-top:9px;flex-wrap:wrap}
 .li,.su{display:flex;align-items:center;gap:10px;padding:3px 8px;border-bottom:1px solid rgba(212,165,116,.16);cursor:pointer;border-radius:10px}
-.li:active,.su:active{background:rgba(212,165,116,.18)}.su.cu{background:rgba(212,165,116,.16)}
-.li i{width:13px;height:28px;border-radius:2px 2px 0 0;clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%);flex:none}
-.li b{min-width:68px;font-weight:normal;color:var(--car)}.li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.li:active,.su:active{background:rgba(212,165,116,.18)}.su.cu,.li.cu{background:rgba(212,165,116,.16)}
+.li i{width:11px;height:22px;border-radius:2px 2px 0 0;clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%);flex:none}
+.li{font-size:14px}.li b{min-width:58px;font-weight:normal;color:var(--car)}.li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .su .no{flex:none;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:bold;color:#3a2820;background:linear-gradient(180deg,#e6bf91,#c08b55);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 2px 4px rgba(0,0,0,.4)}
 .su .nm{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;overflow:hidden;white-space:nowrap}.su .nm b{flex:none;font-weight:normal;font-size:15px;color:var(--cream)}.su .nm small{color:var(--mut);font-size:12px;overflow:hidden;text-overflow:ellipsis}
 .su .pg{flex:none;color:var(--mut);font-size:12px}
@@ -65,6 +65,10 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 .sl,.pn>div{scrollbar-width:thin;scrollbar-color:#7a5a46 transparent}
 .sl::-webkit-scrollbar,.pn>div::-webkit-scrollbar{width:8px}.sl::-webkit-scrollbar-thumb,.pn>div::-webkit-scrollbar-thumb{background:#7a5a46;border-radius:6px}.sl::-webkit-scrollbar-track,.pn>div::-webkit-scrollbar-track{background:transparent}
 .pn h3,.sq,.row{flex:none}
+.pn>div>*{flex:none}.pn>div>.sl{flex:1 1 auto}
+.pn .b{height:30px;padding:0 12px;font-size:14px}
+.pn input[type=text]{height:34px;font-size:14.5px}
+.sub{margin:10px 0 3px;padding-top:7px;border-top:1px solid rgba(212,165,116,.22);text-align:center;color:var(--mut);font-size:11.5px;letter-spacing:.7px;text-transform:uppercase}
 .em{text-align:center;color:var(--mut);padding:16px;font-style:italic}
 #t{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(34,21,15,.94);color:var(--cream);border:1px solid var(--edge);padding:9px 18px;border-radius:20px;z-index:12;opacity:0;transition:opacity .3s;pointer-events:none;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
 #ver{position:fixed;left:10px;bottom:10px;z-index:9;font-size:12px;border-radius:15px;padding:5px 12px;border:1px solid var(--edge);background:rgba(34,21,15,.86);color:var(--mut);font-family:var(--serif);opacity:.75}
@@ -82,7 +86,6 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
   <button class="b" id="next" aria-label="Keyingi"><svg class="i" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
   <button class="b" id="mk" aria-label="Метка"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h10v18l-5-4-5 4z"/></svg></button>
   <div id="cm" hidden></div>
-  <button class="b" id="ls"><svg class="i" viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg><span>Метки</span></button>
   <button class="b" id="ft" title="Масштаб" aria-label="Масштаб"><svg class="i" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
  </div>
  <button class="b" id="sr" title="Суры"><svg class="i" viewBox="0 0 24 24"><path d="M3 5c3-1.2 6-1 9 1 3-2 6-2.200 9-1v13c-3-1.200-6-1-9 1-3-2-6-2.200-9-1z"/><path d="M12 6v13"/></svg><span id="srt"></span></button>
@@ -92,7 +95,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="t"></div>
 <button id="ver" type="button"></button>
 <script>
-const VER='1.5',IMGV=3;
+const VER='1.6',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
@@ -155,15 +158,14 @@ mk.onclick=()=>{
   const ok=el('button','b','Сохранить');ok.onclick=()=>{marks[cur]={c:sel,t:t.value.trim()};saveMarks();draw();close();toast('Метка сохранена')};
   r.appendChild(ok);
   if(m){const del=el('button','b','Удалить');del.onclick=()=>{delete marks[cur];saveMarks();draw();close();toast('Метка удалена')};r.appendChild(del)}
-  const cn=el('button','b','Отмена');cn.onclick=close;r.appendChild(cn);
-  w.appendChild(r);open(w);
-};
-$('ls').onclick=()=>{
-  const w=el('div');w.appendChild(el('h3',null,'Мои метки'));
+  const cn=el('button','b','Закрыть');cn.onclick=close;r.appendChild(cn);
+  w.appendChild(r);
   const ks=Object.keys(marks).map(Number).sort((a,b)=>a-b);
-  if(!ks.length)w.appendChild(el('div','em','Меток пока нет. Нажмите 🔖, чтобы поставить метку на текущей странице.'));
-  ks.forEach(p=>{const m=marks[p],r=el('div','li');const i=el('i');i.style.background=COL[m.c];r.appendChild(i);r.appendChild(el('b',null,'стр. '+p));r.appendChild(el('span',null,m.t||''));r.onclick=()=>{close();show(p)};w.appendChild(r)});
-  const r=el('div','row');const cn=el('button','b','Закрыть');cn.onclick=close;r.appendChild(cn);w.appendChild(r);open(w);
+  w.appendChild(el('div','sub','Мои метки'+(ks.length?' · '+ks.length:'')));
+  const lst=el('div','sl');
+  if(!ks.length)lst.appendChild(el('div','em','Пока меток нет'));
+  ks.forEach(p=>{const mm=marks[p],row=el('div','li'+(p===cur?' cu':''));const i=el('i');i.style.background=COL[mm.c];row.appendChild(i);row.appendChild(el('b',null,'стр. '+p));row.appendChild(el('span',null,mm.t||''));row.onclick=()=>{close();show(p)};lst.appendChild(row)});
+  w.appendChild(lst);open(w);
 };
 const norm=s=>s.toLowerCase().replace(/['’ʼ‘`ʻ]/g,'').replace(/ё/g,'е');
 const words=s=>norm(s).split(/[\s\-]+/).filter(Boolean);
