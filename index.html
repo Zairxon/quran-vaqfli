@@ -33,33 +33,33 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke
 #sr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #v{position:absolute;top:var(--bh,50px);bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:4px 10px 30px;scrollbar-color:#6b4d3c #24170f}
 #v::-webkit-scrollbar{width:10px}#v::-webkit-scrollbar-track{background:#24170f}#v::-webkit-scrollbar-thumb{background:#6b4d3c;border-radius:6px;border:2px solid #24170f}
-#sheet{position:relative;width:fit-content;margin:0 auto;background:#fff;line-height:0;border-radius:5px;overflow:hidden;
+#sheet{position:relative;width:fit-content;margin:0 auto;background:#fff url(frame.jpg) center/106% 106% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
  box-shadow:0 0 0 1px rgba(212,165,116,.28),0 14px 40px rgba(8,3,1,.65),0 3px 8px rgba(8,3,1,.5)}
 #v.fw #sheet{width:min(100%,1000px)}
 #v.fw img{width:100%;height:auto}
 #v.fh img{height:calc(100vh - var(--bh,50px) - 40px);height:calc(100dvh - var(--bh,50px) - 40px);width:auto}
-img#pg{display:block;transition:opacity .18s;margin-top:-3.9%}
-#rib{position:absolute;top:0;right:2px;width:15px;height:30px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
+img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:multiply}
+#rib{position:absolute;top:0;right:24px;width:21px;height:42px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
 #sh{position:fixed;inset:0;background:rgba(18,9,5,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:10;display:none;align-items:center;justify-content:center;padding:12px}
 #sh.on{display:flex}
-.pn{width:min(460px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#4a3328,#2c1e17);border:1px solid var(--edge);border-radius:22px;padding:18px 18px 16px;
+.pn{width:min(460px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#4a3328,#2c1e17);border:1px solid var(--edge);border-radius:20px;padding:12px 14px 12px;
  box-shadow:inset 0 1px 0 rgba(255,235,210,.14),0 20px 60px rgba(5,2,0,.75)}
-.pn h3{margin:0 0 14px;text-align:center;font-weight:normal;font-size:20px;letter-spacing:.8px;color:var(--car)}
-.pn h3::after{content:"";display:block;width:64px;height:2px;margin:9px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,var(--car),transparent)}
+.pn h3{margin:0 0 8px;text-align:center;font-weight:normal;font-size:17px;letter-spacing:.8px;color:var(--car)}
+.pn h3::after{content:"";display:block;width:56px;height:2px;margin:5px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,var(--car),transparent)}
 .sw{display:flex;justify-content:center;gap:14px;margin:10px 0 16px}
 .sw i{width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,.15);box-shadow:inset 0 2px 3px rgba(255,255,255,.45),0 2px 5px rgba(0,0,0,.6);cursor:pointer;transition:transform .12s}
 .sw i.s{border-color:#fff;transform:scale(1.18)}
-.pn input[type=text],.sq{width:100%;height:42px;border-radius:21px;border:1px solid var(--edge);background:linear-gradient(180deg,#fbf2e3,#ecdcc3);color:#3a2820;padding:0 18px;font-size:17px;font-family:var(--serif);box-shadow:inset 0 2px 4px rgba(90,60,40,.25)}
+.pn input[type=text],.sq{width:100%;height:36px;border-radius:18px;border:1px solid var(--edge);background:linear-gradient(180deg,#fbf2e3,#ecdcc3);color:#3a2820;padding:0 16px;font-size:15px;font-family:var(--serif);box-shadow:inset 0 2px 4px rgba(90,60,40,.25)}
 .pn input[type=text]:focus,.sq:focus{outline:none;box-shadow:0 0 0 3px rgba(212,165,116,.5)}
-.sq{margin-bottom:10px}
-.row{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
-.li,.su{display:flex;align-items:center;gap:12px;padding:10px 8px;border-bottom:1px solid rgba(212,165,116,.16);cursor:pointer;border-radius:10px}
+.sq{margin-bottom:6px}
+.row{display:flex;gap:10px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.li,.su{display:flex;align-items:center;gap:10px;padding:3px 8px;border-bottom:1px solid rgba(212,165,116,.16);cursor:pointer;border-radius:10px}
 .li:active,.su:active{background:rgba(212,165,116,.18)}.su.cu{background:rgba(212,165,116,.16)}
 .li i{width:13px;height:28px;border-radius:2px 2px 0 0;clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%);flex:none}
 .li b{min-width:68px;font-weight:normal;color:var(--car)}.li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.su .no{flex:none;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold;color:#3a2820;background:linear-gradient(180deg,#e6bf91,#c08b55);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 2px 4px rgba(0,0,0,.4)}
-.su .nm{flex:1;min-width:0}.su .nm b{display:block;font-weight:normal;font-size:17px;color:var(--cream)}.su .nm small{color:var(--mut);font-size:13px}
-.su .pg{flex:none;color:var(--mut);font-size:13px}
+.su .no{flex:none;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:bold;color:#3a2820;background:linear-gradient(180deg,#e6bf91,#c08b55);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 2px 4px rgba(0,0,0,.4)}
+.su .nm{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;overflow:hidden;white-space:nowrap}.su .nm b{flex:none;font-weight:normal;font-size:15px;color:var(--cream)}.su .nm small{color:var(--mut);font-size:12px;overflow:hidden;text-overflow:ellipsis}
+.su .pg{flex:none;color:var(--mut);font-size:12px}
 .pn>div{display:flex;flex-direction:column;flex:1;min-height:0;overflow:auto}
 .sl{flex:1 1 auto;min-height:0;overflow:auto;padding-right:2px}
 .sl,.pn>div{scrollbar-width:thin;scrollbar-color:#7a5a46 transparent}
@@ -92,13 +92,14 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%}
 <div id="t"></div>
 <button id="ver" type="button"></button>
 <script>
-const VER='1.4',IMGV=3;
+const VER='1.5',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
 const RU="Аль-Фатиха|Аль-Бакара|Али Имран|Ан-Ниса|Аль-Маида|Аль-Анам|Аль-Араф|Аль-Анфаль|Ат-Тауба|Юнус|Худ|Юсуф|Ар-Рад|Ибрахим|Аль-Хиджр|Ан-Нахль|Аль-Исра|Аль-Кахф|Марьям|Та Ха|Аль-Анбия|Аль-Хаджж|Аль-Муминун|Ан-Нур|Аль-Фуркан|Аш-Шуара|Ан-Намль|Аль-Касас|Аль-Анкабут|Ар-Рум|Лукман|Ас-Саджда|Аль-Ахзаб|Саба|Фатыр|Йа Син|Ас-Саффат|Сад|Аз-Зумар|Гафир|Фуссылат|Аш-Шура|Аз-Зухруф|Ад-Духан|Аль-Джасия|Аль-Ахкаф|Мухаммад|Аль-Фатх|Аль-Худжурат|Каф|Аз-Зарият|Ат-Тур|Ан-Наджм|Аль-Камар|Ар-Рахман|Аль-Вакиа|Аль-Хадид|Аль-Муджадала|Аль-Хашр|Аль-Мумтахана|Ас-Сафф|Аль-Джума|Аль-Мунафикун|Ат-Тагабун|Ат-Талак|Ат-Тахрим|Аль-Мульк|Аль-Калям|Аль-Хакка|Аль-Маариж|Нух|Аль-Джинн|Аль-Музаммиль|Аль-Муддассир|Аль-Кияма|Аль-Инсан|Аль-Мурсалят|Ан-Наба|Ан-Назиат|Абаса|Ат-Таквир|Аль-Инфитар|Аль-Мутаффифин|Аль-Иншикак|Аль-Бурудж|Ат-Тарик|Аль-Аля|Аль-Гашия|Аль-Фаджр|Аль-Баляд|Аш-Шамс|Аль-Лейл|Ад-Духа|Аш-Шарх|Ат-Тин|Аль-Аляк|Аль-Кадр|Аль-Баййина|Аз-Зальзаля|Аль-Адият|Аль-Кариа|Ат-Такасур|Аль-Аср|Аль-Хумаза|Аль-Филь|Курайш|Аль-Маун|Аль-Каусар|Аль-Кафирун|Ан-Наср|Аль-Масад|Аль-Ихлас|Аль-Фалак|Ан-Нас".split('|');
 const START=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,332,342,350,359,367,377,385,396,404,411,415,418,428,434,440,446,453,458,467,477,483,489,496,499,502,507,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,566,568,570,572,574,575,577,578,580,582,583,585,586,587,587,589,590,591,591,592,593,594,595,595,596,596,597,597,598,598,599,599,600,600,601,601,601,602,602,602,603,603,603,604,604,604];
 const PM="1;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3,4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4,5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;8;8;8;8;8;8;8;8;8;8;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9,10;10;10;10;10;10;10;10;10;10;10;10;10;10;10,11;11;11;11;11;11;11;11;11;11;11;11;11;11;11,12;12;12;12;12;12;12;12;12;12;12;12;12;12;13;13;13;13;13;13;13,14;14;14;14;14;14;14;15;15;15;15;15;15,16;16;16;16;16;16;16;16;16;16;16;16;16;16;16;17;17;17;17;17;17;17;17;17;17;17;17,18;18;18;18;18;18;18;18;18;18;18;18;19;19;19;19;19;19;19;19,20;20;20;20;20;20;20;20;20;20;21;21;21;21;21;21;21;21;21;21,22;22;22;22;22;22;22;22;22;22;22,23;23;23;23;23;23;23;23;23,24;24;24;24;24;24;24;24;24;24;24,25;25;25;25;25;25;25;25,26;26;26;26;26;26;26;26;26;26;26,27;27;27;27;27;27;27;27;27;27,28;28;28;28;28;28;28;28;28;28;28;28,29;29;29;29;29;29;29;29;29,30;30;30;30;30;30;30;31;31;31;31,32;32;32;32,33;33;33;33;33;33;33;33;33;33;33;34;34;34;34;34;34;34,35;35;35;35;35;35;35,36;36;36;36;36;36,37;37;37;37;37;37;37;37,38;38;38;38;38;38;38,39;39;39;39;39;39;39;39;39;39,40;40;40;40;40;40;40;40;40;40;41;41;41;41;41;41;42;42;42;42;42;42;42,43;43;43;43;43;43;43;44;44;44,45;45;45;45;45,46;46;46;46;46,47;47;47;47;47;48;48;48;48;48,49;49;49;50;50;50,51;51;51;51,52;52;52,53;53;53;53,54;54;54;54,55;55;55;55,56;56;56;56,57;57;57;57;57;58;58;58;58,59;59;59;59,60;60;60;60,61;61;62;62,63;63,64;64;64,65;65;65;66;66;67;67;67,68;68;68,69;69;69,70;70;70,71;71;72;72;73;73,74;74;74,75;75,76;76;76,77;77;78;78,79;79,80;80;81,82;82,83;83;83,84;85,86;86,87;87,88;89;89,90,91;91,92;92,93,94;95,96;97,98;98,99,100;100,101,102;103,104,105;106,107,108;109,110,111;112,113,114".split(';').map(x=>x.split(',').map(Number));
+const NOCROP=[104,193,434];
 const bar=$('bar');
 function setBH(){document.documentElement.style.setProperty('--bh',bar.offsetHeight+'px')}
 if(window.ResizeObserver)new ResizeObserver(setBH).observe(bar);addEventListener('resize',setBH);setBH();
@@ -123,6 +124,7 @@ function draw(){
 function show(i){
   cur=Math.max(1,Math.min(N,i|0||1));
   img.style.opacity=.3;img.onload=()=>img.style.opacity=1;img.src=src(cur);
+  img.style.marginTop=NOCROP.includes(cur)?'0':'';
   v.scrollTop=0;inp.value=cur;sv('qp',cur);draw();
   if(cur<N)new Image().src=src(cur+1);
   if(cur>1)new Image().src=src(cur-1);
