@@ -94,6 +94,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
   <button class="b" id="prev" aria-label="Oldingi"><svg class="i" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
   <button class="b" id="mk" aria-label="Метка"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h10v18l-5-4-5 4z"/></svg></button>
   <div id="cm" hidden></div>
+  <button class="b" id="lg" title="Til / Тил / Язык / Language"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span id="lgc"></span></button>
   <button class="b" id="ft" title="Масштаб" aria-label="Масштаб"><svg class="i" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
  </div>
  <button class="b" id="sr" title="Суры"><svg class="i" viewBox="0 0 24 24"><path d="M3 5c3-1.2 6-1 9 1 3-2 6-2.200 9-1v13c-3-1.200-6-1-9 1-3-2-6-2.200-9-1z"/><path d="M12 6v13"/></svg><span id="srt"></span></button>
@@ -102,7 +103,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
 <script>
-const VER='2.7',IMGV=3;
+const VER='2.8',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
@@ -121,6 +122,40 @@ try{marks=JSON.parse(lg('qbm','{}'))||{}}catch(e){marks={}}
 const old=+lg('qm',0);if(old&&!marks[old]){marks[old]={c:0,t:''};sv('qbm',JSON.stringify(marks))}
 fit=lg('qf','w');v.className=fit==='h'?'fh':'fw';
 const REST=new Set([3,4,5,9,11,13,14,18,26,27,37,38,40,52,53,54,78,84,101,104,108,123,125,134,135,138,139,142,143,146,160,161,169,178,180,182,192,193,194,197,200,210,211,219,222,231,239,244,251,257,265,270,280,281,284,285,296,298,308,317,318,324,328,330,333,344,355,359,360,366,379,381,382,390,397,398,399,400,406,408,413,422,426,432,434,436,438,454,456,459,464,468,471,475,480,485,488,491,500,501,505,506,512,513,517,541,544,545,547,551,552,555,559,576,599]);
+// ===== Языки: uzl — узбекский (латиница), uzc — узбекский (кириллица), ru — русский, en — английский =====
+const EN="Al-Fatihah|Al-Baqarah|Ali 'Imran|An-Nisa|Al-Ma'idah|Al-An'am|Al-A'raf|Al-Anfal|At-Tawbah|Yunus|Hud|Yusuf|Ar-Ra'd|Ibrahim|Al-Hijr|An-Nahl|Al-Isra|Al-Kahf|Maryam|Ta-Ha|Al-Anbiya|Al-Hajj|Al-Mu'minun|An-Nur|Al-Furqan|Ash-Shu'ara|An-Naml|Al-Qasas|Al-Ankabut|Ar-Rum|Luqman|As-Sajdah|Al-Ahzab|Saba|Fatir|Ya-Sin|As-Saffat|Sad|Az-Zumar|Ghafir|Fussilat|Ash-Shura|Az-Zukhruf|Ad-Dukhan|Al-Jathiyah|Al-Ahqaf|Muhammad|Al-Fath|Al-Hujurat|Qaf|Adh-Dhariyat|At-Tur|An-Najm|Al-Qamar|Ar-Rahman|Al-Waqi'ah|Al-Hadid|Al-Mujadila|Al-Hashr|Al-Mumtahanah|As-Saff|Al-Jumu'ah|Al-Munafiqun|At-Taghabun|At-Talaq|At-Tahrim|Al-Mulk|Al-Qalam|Al-Haqqah|Al-Ma'arij|Nuh|Al-Jinn|Al-Muzzammil|Al-Muddaththir|Al-Qiyamah|Al-Insan|Al-Mursalat|An-Naba|An-Nazi'at|'Abasa|At-Takwir|Al-Infitar|Al-Mutaffifin|Al-Inshiqaq|Al-Buruj|At-Tariq|Al-A'la|Al-Ghashiyah|Al-Fajr|Al-Balad|Ash-Shams|Al-Layl|Ad-Duha|Ash-Sharh|At-Tin|Al-'Alaq|Al-Qadr|Al-Bayyinah|Az-Zalzalah|Al-'Adiyat|Al-Qari'ah|At-Takathur|Al-'Asr|Al-Humazah|Al-Fil|Quraysh|Al-Ma'un|Al-Kawthar|Al-Kafirun|An-Nasr|Al-Masad|Al-Ikhlas|Al-Falaq|An-Nas".split('|');
+// узбекская латиница -> кириллица
+function uzCyr(w){
+  const lo=w.toLowerCase(),cap=ch=>ch.toUpperCase();let o='',i=0;
+  const map={a:'а',b:'б',d:'д',e:'е',f:'ф',g:'г',h:'ҳ',i:'и',j:'ж',k:'к',l:'л',m:'м',n:'н',o:'о',p:'п',q:'қ',r:'р',s:'с',t:'т',u:'у',v:'в',x:'х',y:'й',z:'з'};
+  while(i<lo.length){
+    const two=lo.slice(i,i+2),start=i===0||lo[i-1]===' '||lo[i-1]==='-';let r=null,n=1;
+    if(two==='sh'){r='ш';n=2}else if(two==='ch'){r='ч';n=2}
+    else if(two==="o'"||two==='oʻ'||two==='o‘'||two==='o’'){r='ў';n=2}
+    else if(two==="g'"||two==='gʻ'||two==='g‘'||two==='g’'){r='ғ';n=2}
+    else if(two==='yo'){r='ё';n=2}else if(two==='yu'){r='ю';n=2}else if(two==='ya'){r='я';n=2}
+    else if(lo[i]==="'"||lo[i]==='’'||lo[i]==='ʼ'||lo[i]==='‘'){r='ъ'}
+    else if(lo[i]==='e'&&start){r='э'}
+    else if(map[lo[i]]){r=map[lo[i]]}
+    else r=lo[i];
+    o+=(w[i]!==lo[i])?cap(r.charAt(0))+r.slice(1):r;i+=n;
+  }
+  return o;
+}
+const UZC=UZ.map(uzCyr);
+const LANGS=[['uzl',"O'zbekcha (lotin)",'UZ'],['uzc','Ўзбекча (кирилл)','ЎЗ'],['ru','Русский','RU'],['en','English','EN']];
+const T={
+ ru:{mark_title:'Метка — стр. {n}',comment_ph:'Комментарий, например: имя суры',save:'Сохранить',del:'Удалить',close:'Закрыть',my_marks:'Мои метки',no_marks:'Пока меток нет',page:'стр. {n}',saved:'Метка сохранена',deleted:'Метка удалена',surahs:'Суры',search_ph:'Поиск: введите 1–3 буквы или номер',not_found:'Ничего не найдено',fit_w:'По ширине',fit_h:'Целая страница',resume:'Продолжаем со стр. {n}',hint:'Панель: дважды коснитесь левого верхнего угла',update:'↻ Есть обновление',updating:'Обновляю…',update_toast:'Есть обновление',latest:'Версия {v} — последняя',lang_title:'Язык'},
+ uzl:{mark_title:"Belgi — {n}-bet",comment_ph:"Izoh, masalan: sura nomi",save:"Saqlash",del:"O'chirish",close:"Yopish",my_marks:"Belgilarim",no_marks:"Hozircha belgilar yo'q",page:"{n}-bet",saved:"Belgi saqlandi",deleted:"Belgi o'chirildi",surahs:"Suralar",search_ph:"Qidiruv: 1–3 harf yoki raqam kiriting",not_found:"Hech narsa topilmadi",fit_w:"Kenglik bo'yicha",fit_h:"Butun sahifa",resume:"{n}-betdan davom etamiz",hint:"Panel: chap yuqori burchakka ikki marta teging",update:"↻ Yangilanish bor",updating:"Yangilanmoqda…",update_toast:"Yangilanish bor",latest:"{v}-versiya — eng so'nggisi",lang_title:"Til"},
+ uzc:{mark_title:'Белги — {n}-бет',comment_ph:'Изоҳ, масалан: сура номи',save:'Сақлаш',del:'Ўчириш',close:'Ёпиш',my_marks:'Белгиларим',no_marks:'Ҳозирча белгилар йўқ',page:'{n}-бет',saved:'Белги сақланди',deleted:'Белги ўчирилди',surahs:'Суралар',search_ph:'Қидирув: 1–3 ҳарф ёки рақам киритинг',not_found:'Ҳеч нарса топилмади',fit_w:'Кенглик бўйича',fit_h:'Бутун саҳифа',resume:'{n}-бетдан давом этамиз',hint:'Панель: чап юқори бурчакка икки марта тегинг',update:'↻ Янгиланиш бор',updating:'Янгиланмоқда…',update_toast:'Янгиланиш бор',latest:'{v}-версия — энг сўнггиси',lang_title:'Тил'},
+ en:{mark_title:'Bookmark — page {n}',comment_ph:'Note, e.g. surah name',save:'Save',del:'Delete',close:'Close',my_marks:'My bookmarks',no_marks:'No bookmarks yet',page:'p. {n}',saved:'Bookmark saved',deleted:'Bookmark deleted',surahs:'Surahs',search_ph:'Search: type 1–3 letters or a number',not_found:'Nothing found',fit_w:'Fit width',fit_h:'Whole page',resume:'Continuing from page {n}',hint:'Panel: double-tap the top-left corner',update:'↻ Update available',updating:'Updating…',update_toast:'Update available',latest:'Version {v} is the latest',lang_title:'Language'}
+};
+let lang=lg('ql','');
+if(!T[lang]){const nl=(navigator.language||'ru').toLowerCase();lang=nl.startsWith('uz')?'uzl':nl.startsWith('en')?'en':'ru'}
+const t=(k,o)=>{let s=(T[lang]&&T[lang][k])||T.ru[k]||k;if(o)for(const x in o)s=s.replace('{'+x+'}',o[x]);return s};
+const nm=i=>lang==='uzl'?UZ[i-1]:lang==='uzc'?UZC[i-1]:lang==='en'?EN[i-1]:RU[i-1];
+const nm2=i=>lang==='uzl'||lang==='uzc'?RU[i-1]:UZ[i-1];
+function setLang(l){lang=l;sv('ql',l);document.documentElement.lang=l==='uzc'?'uz-Cyrl':l==='uzl'?'uz':l;const c=$('lgc');if(c)c.textContent=(LANGS.find(x=>x[0]===l)||LANGS[2])[2];draw();drawVer()}
 const src=i=>'pages/p-'+String(i-1).padStart(3,'0')+'.jpg?v='+IMGV+(REST.has(i)?'r':'');
 function ribbon(c){const s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 30"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset=".45" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient><filter id="f" x="-40%" y="-10%" width="180%" height="150%"><feDropShadow dx="1" dy="1.6" stdDeviation="1.1" flood-opacity=".6"/></filter></defs><g filter="url(#f)"><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="'+c+'"/><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="url(#g)"/></g></svg>';return 'url("data:image/svg+xml,'+encodeURIComponent(s)+'")'}
 function toast(m,ms){tt.textContent=m;tt.style.opacity=1;clearTimeout(toast.h);toast.h=setTimeout(()=>tt.style.opacity=0,ms||1800)}
@@ -130,7 +165,7 @@ function draw(){
   if(m)rib.style.backgroundImage=ribbon(COL[m.c]);
   mk.style.background=m?COL[m.c]:'';mk.style.borderColor=m?'#fff':'';
   cm.hidden=!(m&&m.t);cm.textContent=m?m.t:'';
-  $('srt').textContent=(PM[cur-1]||[]).map(s=>UZ[s-1]).join(' · ');
+  $('srt').textContent=(PM[cur-1]||[]).map(nm).join(' · ');
 }
 function show(i){
   cur=Math.max(1,Math.min(N,i|0||1));
@@ -144,7 +179,7 @@ inp.onchange=()=>show(+inp.value);
 inp.onfocus=()=>inp.select();
 $('prev').onclick=()=>show(cur-1);
 $('next').onclick=()=>show(cur+1);
-$('ft').onclick=()=>{fit=fit==='w'?'h':'w';v.className=fit==='h'?'fh':'fw';sv('qf',fit);v.scrollTop=0;toast(fit==='w'?'По ширине':'Целая страница')};
+$('ft').onclick=()=>{fit=fit==='w'?'h':'w';v.className=fit==='h'?'fh':'fw';sv('qf',fit);v.scrollTop=0;toast(t(fit==='w'?'fit_w':'fit_h'))};
 addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowLeft'||e.key==='PageDown')show(cur+1);if(e.key==='ArrowRight'||e.key==='PageUp')show(cur-1)});
 let sx=null,sy=0,stt=0;
 v.addEventListener('touchstart',e=>{if(e.touches.length!==1){sx=null;return}sx=e.touches[0].clientX;sy=e.touches[0].clientY;stt=Date.now()},{passive:true});
@@ -173,51 +208,56 @@ function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=
 function saveMarks(){sv('qbm',JSON.stringify(marks))}
 mk.onclick=()=>{
   const m=marks[cur];let sel=m?m.c:0;
-  const w=el('div');w.appendChild(el('h3',null,'Метка — стр. '+cur));
+  const w=el('div');w.appendChild(el('h3',null,t('mark_title',{n:cur})));
   const sw=el('div','sw');
   COL.forEach((c,i)=>{const d=el('i',i===sel?'s':'');d.style.background=c;d.onclick=()=>{sel=i;[...sw.children].forEach((x,j)=>x.classList.toggle('s',j===i))};sw.appendChild(d)});
   w.appendChild(sw);
-  const t=el('input');t.type='text';t.placeholder='Комментарий, например: имя суры';t.maxLength=80;t.value=m?m.t:'';w.appendChild(t);
+  const ti=el('input');ti.type='text';ti.placeholder=t('comment_ph');ti.maxLength=80;ti.value=m?m.t:'';w.appendChild(ti);
   const r=el('div','row');
-  const ok=el('button','b','Сохранить');ok.onclick=()=>{marks[cur]={c:sel,t:t.value.trim()};saveMarks();draw();close();toast('Метка сохранена')};
+  const ok=el('button','b',t('save'));ok.onclick=()=>{marks[cur]={c:sel,t:ti.value.trim()};saveMarks();draw();close();toast(t('saved'))};
   r.appendChild(ok);
-  if(m){const del=el('button','b','Удалить');del.onclick=()=>{delete marks[cur];saveMarks();draw();close();toast('Метка удалена')};r.appendChild(del)}
-  const cn=el('button','b','Закрыть');cn.onclick=close;r.appendChild(cn);
+  if(m){const del=el('button','b',t('del'));del.onclick=()=>{delete marks[cur];saveMarks();draw();close();toast(t('deleted'))};r.appendChild(del)}
+  const cn=el('button','b',t('close'));cn.onclick=close;r.appendChild(cn);
   w.appendChild(r);
   const ks=Object.keys(marks).map(Number).sort((a,b)=>a-b);
-  w.appendChild(el('div','sub','Мои метки'+(ks.length?' · '+ks.length:'')));
+  w.appendChild(el('div','sub',t('my_marks')+(ks.length?' · '+ks.length:'')));
   const lst=el('div','sl');
-  if(!ks.length)lst.appendChild(el('div','em','Пока меток нет'));
-  ks.forEach(p=>{const mm=marks[p],row=el('div','li'+(p===cur?' cu':''));const i=el('i');i.style.background=COL[mm.c];row.appendChild(i);row.appendChild(el('b',null,'стр. '+p));row.appendChild(el('span',null,mm.t||''));row.onclick=()=>{close();show(p)};lst.appendChild(row)});
+  if(!ks.length)lst.appendChild(el('div','em',t('no_marks')));
+  ks.forEach(p=>{const mm=marks[p],row=el('div','li'+(p===cur?' cu':''));const i=el('i');i.style.background=COL[mm.c];row.appendChild(i);row.appendChild(el('b',null,t('page',{n:p})));row.appendChild(el('span',null,mm.t||''));row.onclick=()=>{close();show(p)};lst.appendChild(row)});
   w.appendChild(lst);open(w);
 };
-const norm=s=>s.toLowerCase().replace(/['’ʼ‘`ʻ]/g,'').replace(/ё/g,'е');
+const norm=s=>s.toLowerCase().replace(/['’ʼ‘`ʻ]/g,'').replace(/ё/g,'е').replace(/ў/g,'у').replace(/қ/g,'к').replace(/ғ/g,'г').replace(/ҳ/g,'х').replace(/ъ/g,'');
 const words=s=>norm(s).split(/[\s\-]+/).filter(Boolean);
 $('sr').onclick=()=>{
-  const w=el('div');w.appendChild(el('h3',null,'Суры'));
-  const q=el('input','sq');q.type='text';q.placeholder='Поиск: введите 1–3 буквы или номер';q.autocomplete='off';q.setAttribute('autocapitalize','off');w.appendChild(q);
+  const w=el('div');w.appendChild(el('h3',null,t('surahs')));
+  const q=el('input','sq');q.type='text';q.placeholder=t('search_ph');q.autocomplete='off';q.setAttribute('autocapitalize','off');w.appendChild(q);
   const lst=el('div','sl');w.appendChild(lst);
   const here=PM[cur-1]||[];
   function fill(){
     const k=norm(q.value.trim());lst.innerHTML='';let n=0;
     for(let i=1;i<=114;i++){
-      if(k&&!(String(i).startsWith(k)||words(UZ[i-1]).some(x=>x.startsWith(k))||words(RU[i-1]).some(x=>x.startsWith(k))))continue;
+      if(k&&!(String(i).startsWith(k)||words(UZ[i-1]).some(x=>x.startsWith(k))||words(UZC[i-1]).some(x=>x.startsWith(k))||words(RU[i-1]).some(x=>x.startsWith(k))||words(EN[i-1]).some(x=>x.startsWith(k))))continue;
       const r=el('div','su'+(here.includes(i)?' cu':''));
       r.appendChild(el('div','no',String(i)));
-      const nm=el('div','nm');nm.appendChild(el('b',null,UZ[i-1]));nm.appendChild(el('small',null,RU[i-1]));r.appendChild(nm);
-      r.appendChild(el('div','pg','стр. '+START[i-1]));
+      const nmEl=el('div','nm');nmEl.appendChild(el('b',null,nm(i)));nmEl.appendChild(el('small',null,nm2(i)));r.appendChild(nmEl);
+      r.appendChild(el('div','pg',t('page',{n:START[i-1]})));
       r.onclick=()=>{close();show(START[i-1])};lst.appendChild(r);n++;
     }
-    if(!n)lst.appendChild(el('div','em','Ничего не найдено'));
+    if(!n)lst.appendChild(el('div','em',t('not_found')));
   }
   q.oninput=fill;fill();
-  const r=el('div','row');const cn=el('button','b','Закрыть');cn.onclick=close;r.appendChild(cn);w.appendChild(r);
+  const r=el('div','row');const cn=el('button','b',t('close'));cn.onclick=close;r.appendChild(cn);w.appendChild(r);
   open(w);setTimeout(()=>{const c=lst.querySelector('.cu');if(c)c.scrollIntoView({block:'center'})},50);
 };
 bar.classList.add('h');
-const s0=+lg('qp',1)||1;show(s0);const hc=+lg('qh',0);if(hc<3){sv('qh',hc+1);setTimeout(()=>toast('Панель: дважды коснитесь левого верхнего угла',4200),900)}if(s0>1)toast('Продолжаем со стр. '+s0);
+$('lg').onclick=()=>{
+  const w=el('div');w.appendChild(el('h3',null,t('lang_title')));
+  LANGS.forEach(([c,label,code])=>{const r=el('div','su'+(c===lang?' cu':''));r.appendChild(el('div','no',code));const nmE=el('div','nm');nmE.appendChild(el('b',null,label));r.appendChild(nmE);r.onclick=()=>{setLang(c);close()};w.appendChild(r)});
+  const r=el('div','row');const cn=el('button','b',t('close'));cn.onclick=close;r.appendChild(cn);w.appendChild(r);open(w);
+};
+const s0=+lg('qp',1)||1;show(s0);const hc=+lg('qh',0);if(hc<3){sv('qh',hc+1);setTimeout(()=>toast(t('hint'),4200),900)}if(s0>1)toast(t('resume',{n:s0}));
 let newer=false,busy=false;
-function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?'Обновляю…':newer?'↻ Есть обновление':'v'+VER}
+function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?t('updating'):newer?t('update'):'v'+VER}
 async function hardRefresh(){
   newer=false;busy=true;drawVer();
   try{const rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(r=>r.unregister()))}catch(e){}
@@ -226,10 +266,10 @@ async function hardRefresh(){
 }
 async function checkVer(){
   try{const r=await fetch('./version.json?'+Date.now(),{cache:'no-store'});if(!r.ok)return;const j=await r.json();
-    const n=!!j.v&&j.v!==VER;if(n!==newer){newer=n;drawVer();if(n){toast('Есть обновление');showBar()}}}catch(e){}
+    const n=!!j.v&&j.v!==VER;if(n!==newer){newer=n;drawVer();if(n){toast(t('update_toast'));showBar()}}}catch(e){}
 }
-$('ver').onclick=async()=>{if(newer)return hardRefresh();await checkVer();toast(newer?'Есть обновление':'Версия '+VER+' — последняя')};
-drawVer();checkVer();setInterval(checkVer,5*60e3);
+$('ver').onclick=async()=>{if(newer)return hardRefresh();await checkVer();toast(newer?t('update_toast'):t('latest',{v:VER}))};
+drawVer();checkVer();setLang(lang);setInterval(checkVer,5*60e3);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkVer()});
 addEventListener('pagehide',()=>sv('qp',cur));
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?i='+IMGV).catch(()=>{});
