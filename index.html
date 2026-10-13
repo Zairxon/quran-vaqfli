@@ -6,7 +6,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#2a1c15">
+<meta name="theme-color" content="#244a33">
 <title>Vaqfli Qur'on</title>
 <style>
 :root{--c0:#1a100b;--c1:#2a1c15;--c2:#3b2a21;--c3:#4f372b;--edge:rgba(212,165,116,.34);--car:#d4a574;--car2:#b8844f;--cream:#f4e8d6;--tx:#ecdcc6;--mut:#b99d82;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
@@ -76,6 +76,13 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 #ver.new{opacity:1;background:linear-gradient(180deg,#e6bf91,#bd8750);color:#2a1a10;border-color:rgba(255,255,255,.65);font-size:11px;font-weight:bold;padding:5px 9px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
 @media (max-width:860px){#ls span{display:none}}
 @media (max-width:720px){#bar{grid-template-columns:1fr}#ver{position:absolute;top:3px;left:6px}#ver.new{position:static;justify-self:start}#mid{flex-wrap:wrap;justify-content:center;gap:7px}#cm{flex-basis:100%;max-width:100%;text-align:center}#sr{justify-self:center;max-width:100%}.cell{padding:0 10px 0 5px;gap:5px}.cell input{width:48px}.b{padding:0 10px}}
+/* зелёная верхняя панель */
+#bar{--edge:rgba(214,205,150,.4);--car:#e3cb85;background:linear-gradient(180deg,#336247 0%,#244a33 55%,#1a3a29 100%);box-shadow:inset 0 1px 0 rgba(220,255,225,.18),0 8px 22px rgba(4,12,6,.55)}
+#bar .b{background:linear-gradient(180deg,#447b59,#2c5640);box-shadow:inset 0 1px 0 rgba(220,255,225,.22),0 2px 6px rgba(4,12,6,.45)}
+#bar .cell{background:linear-gradient(180deg,#0f2418,#1b3a28);box-shadow:inset 0 2px 5px rgba(0,0,0,.55),0 1px 0 rgba(220,255,225,.14)}
+#bar #cm{background:rgba(227,203,133,.12)}
+#bar #ver{background:rgba(8,26,16,.55);color:#bcd3bf}
+#bar #ver.new{background:linear-gradient(180deg,#f0d9a0,#c9a24f);color:#2a2410}
 </style>
 </head>
 <body>
@@ -95,7 +102,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
 <script>
-const VER='2.2',IMGV=3;
+const VER='2.3',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
