@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0f182b">
+<title>Vaqfli Qur'on</title>
+<style>
+:root{--gold:#c9a24d;--goldl:#f1e3b8;--navy:#0f182b;--navy2:#17233a;--cream:#f6f0e2}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#121a2b;color:var(--goldl);font-family:Georgia,"Times New Roman",serif;overflow:hidden;-webkit-tap-highlight-color:transparent}
+#bar{position:fixed;top:0;left:0;right:0;min-height:46px;z-index:5;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px 8px;padding:6px 8px;
+ background:linear-gradient(180deg,var(--navy2),var(--navy));border-bottom:1px solid var(--gold);box-shadow:0 2px 10px rgba(0,0,0,.5)}
+#mid{display:flex;align-items:center;gap:8px}
+#sr{justify-self:end;max-width:min(230px,28vw);overflow:hidden}
+#sr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sq{width:100%;height:38px;border-radius:19px;border:1px solid var(--gold);background:var(--cream);color:var(--navy);padding:0 16px;font-size:17px;font-family:inherit;margin-bottom:8px}
+.su{display:flex;align-items:center;gap:10px;padding:9px 6px;border-bottom:1px solid rgba(201,162,77,.25);cursor:pointer}
+.su:active{background:rgba(201,162,77,.15)}.su.cu{background:rgba(201,162,77,.18)}
+.su .no{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;background:rgba(201,162,77,.1)}
+.su .nm{flex:1;min-width:0}.su .nm b{display:block;font-weight:normal;font-size:16px}.su .nm small{opacity:.7;font-size:13px}
+.su .pg{flex:none;opacity:.75;font-size:13px}
+.sl{max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);overflow:auto}
+@media (max-width:860px){#ls span{display:none}}
+@media (max-width:720px){#bar{grid-template-columns:1fr}#bar>span{display:none}#mid{flex-wrap:wrap;justify-content:center;gap:6px}#cm{flex-basis:100%;max-width:100%;text-align:center}#sr{justify-self:center;max-width:100%}.cell{padding:0 8px;gap:4px}.cell input{width:46px}.b{padding:0 8px}}
+
+.b{height:32px;min-width:34px;padding:0 10px;border-radius:16px;border:1px solid var(--gold);background:rgba(201,162,77,.08);color:var(--goldl);font-size:15px;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px}
+.b:active{background:rgba(201,162,77,.3)}
+.cell{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--gold);
+ background:linear-gradient(180deg,#1d2c49,#121c33);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 1px 4px rgba(0,0,0,.5);font-size:15px;letter-spacing:.3px}
+.cell input{width:54px;height:24px;border:0;border-radius:12px;background:var(--cream);color:var(--navy);text-align:center;font-size:16px;font-weight:bold;font-family:inherit;-moz-appearance:textfield}
+.cell input::-webkit-outer-spin-button,.cell input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.cell small{opacity:.8;font-size:14px}
+#cm{max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;padding:0 10px;height:28px;line-height:26px;border-radius:14px;border:1px solid var(--gold);background:rgba(201,162,77,.12)}
+#v{position:absolute;top:var(--bh,46px);bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch}
+#sheet{position:relative;width:fit-content;margin:0 auto;background:#fff;line-height:0}
+#v.fw #sheet{width:min(100%,1000px)}
+#v.fw img{width:100%;height:auto}
+#v.fh img{height:calc(100vh - var(--bh,46px));height:calc(100dvh - var(--bh,46px));width:auto}
+img#pg{display:block;transition:opacity .15s}
+#rib{position:absolute;top:0;right:2px;width:15px;height:30px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
+#sh{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10;display:none;align-items:center;justify-content:center;padding:12px}
+#sh.on{display:flex}
+.pn{width:min(440px,100%);max-height:100%;overflow:auto;background:linear-gradient(180deg,var(--navy2),var(--navy));border:1px solid var(--gold);border-radius:16px;padding:16px;box-shadow:0 10px 40px rgba(0,0,0,.7)}
+.pn h3{margin:0 0 12px;text-align:center;font-weight:normal;letter-spacing:.5px}
+.sw{display:flex;justify-content:center;gap:12px;margin:8px 0 14px}
+.sw i{width:30px;height:30px;border-radius:50%;border:2px solid transparent;box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 2px 4px rgba(0,0,0,.6);cursor:pointer}
+.sw i.s{border-color:#fff;transform:scale(1.15)}
+.pn input[type=text]{width:100%;height:38px;border-radius:10px;border:1px solid var(--gold);background:var(--cream);color:var(--navy);padding:0 12px;font-size:16px;font-family:inherit}
+.row{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.li{display:flex;align-items:center;gap:12px;padding:10px 8px;border-bottom:1px solid rgba(201,162,77,.25);cursor:pointer}
+.li:active{background:rgba(201,162,77,.15)}
+.li i{width:12px;height:26px;border-radius:2px 2px 0 0;clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%);flex:none}
+.li b{min-width:64px}.li span{opacity:.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.em{text-align:center;opacity:.7;padding:14px}
+#t{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#000c;color:#fff;padding:8px 14px;border-radius:8px;z-index:12;opacity:0;transition:opacity .3s;pointer-events:none;font-size:14px}
+#ver{position:fixed;left:8px;bottom:8px;z-index:9;font-size:12px;border-radius:14px;padding:5px 10px;border:1px solid rgba(201,162,77,.5);background:rgba(15,24,43,.82);color:var(--goldl);font-family:inherit;opacity:.65}
+#ver.new{opacity:1;background:linear-gradient(180deg,#d9b25a,#b88a2c);color:#101827;border-color:#fff;font-size:14px;font-weight:bold;padding:8px 14px;box-shadow:0 3px 12px rgba(0,0,0,.6)}
+</style>
+</head>
+<body>
+<div id="bar">
+ <span></span>
+ <div id="mid">
+  <button class="b" id="prev" aria-label="Oldingi">‹</button>
+  <div class="cell"><input id="n" type="number" min="1" max="604" value="1"><small>/ 604</small></div>
+  <button class="b" id="next" aria-label="Keyingi">›</button>
+  <button class="b" id="mk">🔖</button>
+  <div id="cm" hidden></div>
+  <button class="b" id="ls">☰<span>&nbsp;Метки</span></button>
+  <button class="b" id="ft" title="Масштаб">⤢</button>
+ </div>
+ <button class="b" id="sr" title="Суры">📖&nbsp;<span id="srt"></span></button>
+</div>
+<div id="v" class="fw"><div id="sheet"><img id="pg" alt=""><div id="rib"></div></div></div>
+<div id="sh"><div class="pn" id="pn"></div></div>
+<div id="t"></div>
+<button id="ver" type="button"></button>
+<script>
+const VER='1.2',IMGV=3;
+const N=604,$=id=>document.getElementById(id);
+const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
+const UZ="Fotiha|Baqara|Oli Imron|Niso|Moida|An'om|A'rof|Anfol|Tavba|Yunus|Hud|Yusuf|Ra'd|Ibrohim|Hijr|Nahl|Isro|Kahf|Maryam|Toha|Anbiyo|Haj|Mu'minun|Nur|Furqon|Shuaro|Naml|Qasas|Ankabut|Rum|Luqmon|Sajda|Ahzob|Saba|Fotir|Yosin|Soffot|Sod|Zumar|G'ofir|Fussilat|Shuro|Zuxruf|Duxon|Josiya|Ahqof|Muhammad|Fath|Hujurot|Qof|Zoriyot|Tur|Najm|Qamar|Rahmon|Voqe'a|Hadid|Mujodala|Hashr|Mumtahana|Soff|Jum'a|Munofiqun|Tag'obun|Taloq|Tahrim|Mulk|Qalam|Haqqa|Ma'orij|Nuh|Jinn|Muzzammil|Muddassir|Qiyoma|Inson|Mursalot|Naba'|Nozi'ot|Abasa|Takvir|Infitor|Mutaffifin|Inshiqoq|Buruj|Toriq|A'lo|G'oshiya|Fajr|Balad|Shams|Layl|Zuho|Sharh|Tin|Alaq|Qadr|Bayyina|Zalzala|Odiyot|Qori'a|Takosur|Asr|Humaza|Fil|Quraysh|Mo'un|Kavsar|Kofirun|Nasr|Masad|Ixlos|Falaq|Nos".split('|');
+const RU="Аль-Фатиха|Аль-Бакара|Али Имран|Ан-Ниса|Аль-Маида|Аль-Анам|Аль-Араф|Аль-Анфаль|Ат-Тауба|Юнус|Худ|Юсуф|Ар-Рад|Ибрахим|Аль-Хиджр|Ан-Нахль|Аль-Исра|Аль-Кахф|Марьям|Та Ха|Аль-Анбия|Аль-Хаджж|Аль-Муминун|Ан-Нур|Аль-Фуркан|Аш-Шуара|Ан-Намль|Аль-Касас|Аль-Анкабут|Ар-Рум|Лукман|Ас-Саджда|Аль-Ахзаб|Саба|Фатыр|Йа Син|Ас-Саффат|Сад|Аз-Зумар|Гафир|Фуссылат|Аш-Шура|Аз-Зухруф|Ад-Духан|Аль-Джасия|Аль-Ахкаф|Мухаммад|Аль-Фатх|Аль-Худжурат|Каф|Аз-Зарият|Ат-Тур|Ан-Наджм|Аль-Камар|Ар-Рахман|Аль-Вакиа|Аль-Хадид|Аль-Муджадала|Аль-Хашр|Аль-Мумтахана|Ас-Сафф|Аль-Джума|Аль-Мунафикун|Ат-Тагабун|Ат-Талак|Ат-Тахрим|Аль-Мульк|Аль-Калям|Аль-Хакка|Аль-Маариж|Нух|Аль-Джинн|Аль-Музаммиль|Аль-Муддассир|Аль-Кияма|Аль-Инсан|Аль-Мурсалят|Ан-Наба|Ан-Назиат|Абаса|Ат-Таквир|Аль-Инфитар|Аль-Мутаффифин|Аль-Иншикак|Аль-Бурудж|Ат-Тарик|Аль-Аля|Аль-Гашия|Аль-Фаджр|Аль-Баляд|Аш-Шамс|Аль-Лейл|Ад-Духа|Аш-Шарх|Ат-Тин|Аль-Аляк|Аль-Кадр|Аль-Баййина|Аз-Зальзаля|Аль-Адият|Аль-Кариа|Ат-Такасур|Аль-Аср|Аль-Хумаза|Аль-Филь|Курайш|Аль-Маун|Аль-Каусар|Аль-Кафирун|Ан-Наср|Аль-Масад|Аль-Ихлас|Аль-Фалак|Ан-Нас".split('|');
+const START=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,332,342,350,359,367,377,385,396,404,411,415,418,428,434,440,446,453,458,467,477,483,489,496,499,502,507,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,566,568,570,572,574,575,577,578,580,582,583,585,586,587,587,589,590,591,591,592,593,594,595,595,596,596,597,597,598,598,599,599,600,600,601,601,601,602,602,602,603,603,603,604,604,604];
+const PM="1;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;2;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3,4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4;4,5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;5;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;6;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;7;8;8;8;8;8;8;8;8;8;8;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9;9,10;10;10;10;10;10;10;10;10;10;10;10;10;10;10,11;11;11;11;11;11;11;11;11;11;11;11;11;11;11,12;12;12;12;12;12;12;12;12;12;12;12;12;12;13;13;13;13;13;13;13,14;14;14;14;14;14;14;15;15;15;15;15;15,16;16;16;16;16;16;16;16;16;16;16;16;16;16;16;17;17;17;17;17;17;17;17;17;17;17;17,18;18;18;18;18;18;18;18;18;18;18;18;19;19;19;19;19;19;19;19,20;20;20;20;20;20;20;20;20;20;21;21;21;21;21;21;21;21;21;21,22;22;22;22;22;22;22;22;22;22;22,23;23;23;23;23;23;23;23;23,24;24;24;24;24;24;24;24;24;24;24,25;25;25;25;25;25;25;25,26;26;26;26;26;26;26;26;26;26;26,27;27;27;27;27;27;27;27;27;27,28;28;28;28;28;28;28;28;28;28;28;28,29;29;29;29;29;29;29;29;29,30;30;30;30;30;30;30;31;31;31;31,32;32;32;32,33;33;33;33;33;33;33;33;33;33;33;34;34;34;34;34;34;34,35;35;35;35;35;35;35,36;36;36;36;36;36,37;37;37;37;37;37;37;37,38;38;38;38;38;38;38,39;39;39;39;39;39;39;39;39;39,40;40;40;40;40;40;40;40;40;40;41;41;41;41;41;41;42;42;42;42;42;42;42,43;43;43;43;43;43;43;44;44;44,45;45;45;45;45,46;46;46;46;46,47;47;47;47;47;48;48;48;48;48,49;49;49;50;50;50,51;51;51;51,52;52;52,53;53;53;53,54;54;54;54,55;55;55;55,56;56;56;56,57;57;57;57;57;58;58;58;58,59;59;59;59,60;60;60;60,61;61;62;62,63;63,64;64;64,65;65;65;66;66;67;67;67,68;68;68,69;69;69,70;70;70,71;71;72;72;73;73,74;74;74,75;75,76;76;76,77;77;78;78,79;79,80;80;81,82;82,83;83;83,84;85,86;86,87;87,88;89;89,90,91;91,92;92,93,94;95,96;97,98;98,99,100;100,101,102;103,104,105;106,107,108;109,110,111;112,113,114".split(';').map(x=>x.split(',').map(Number));
+const bar=$('bar');
+function setBH(){document.documentElement.style.setProperty('--bh',bar.offsetHeight+'px')}
+if(window.ResizeObserver)new ResizeObserver(setBH).observe(bar);addEventListener('resize',setBH);setBH();
+const COL=['#d63a3a','#1f9d55','#2f6fdc','#e0a100','#8e44ad','#e8702a'];
+let cur=1,marks={},fit='w';
+const lg=(k,d)=>{try{const x=localStorage.getItem(k);return x===null?d:x}catch(e){return d}};
+const sv=(k,x)=>{try{localStorage.setItem(k,x)}catch(e){}};
+try{marks=JSON.parse(lg('qbm','{}'))||{}}catch(e){marks={}}
+const old=+lg('qm',0);if(old&&!marks[old]){marks[old]={c:0,t:''};sv('qbm',JSON.stringify(marks))}
+fit=lg('qf','w');v.className=fit==='h'?'fh':'fw';
+const src=i=>'pages/p-'+String(i-1).padStart(3,'0')+'.jpg?v='+IMGV;
+function ribbon(c){const s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 30"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset=".45" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient><filter id="f" x="-40%" y="-10%" width="180%" height="150%"><feDropShadow dx="1" dy="1.6" stdDeviation="1.1" flood-opacity=".6"/></filter></defs><g filter="url(#f)"><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="'+c+'"/><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="url(#g)"/></g></svg>';return 'url("data:image/svg+xml,'+encodeURIComponent(s)+'")'}
+function toast(m){tt.textContent=m;tt.style.opacity=1;clearTimeout(toast.h);toast.h=setTimeout(()=>tt.style.opacity=0,1800)}
+function draw(){
+  const m=marks[cur];
+  rib.style.display=m?'block':'none';
+  if(m)rib.style.backgroundImage=ribbon(COL[m.c]);
+  mk.style.background=m?COL[m.c]:'';mk.style.borderColor=m?'#fff':'';
+  cm.hidden=!(m&&m.t);cm.textContent=m?m.t:'';
+  $('srt').textContent=(PM[cur-1]||[]).map(s=>UZ[s-1]).join(' · ');
+}
+function show(i){
+  cur=Math.max(1,Math.min(N,i|0||1));
+  img.style.opacity=.3;img.onload=()=>img.style.opacity=1;img.src=src(cur);
+  v.scrollTop=0;inp.value=cur;sv('qp',cur);draw();
+  if(cur<N)new Image().src=src(cur+1);
+  if(cur>1)new Image().src=src(cur-1);
+}
+inp.onchange=()=>show(+inp.value);
+inp.onfocus=()=>inp.select();
+$('prev').onclick=()=>show(cur-1);
+$('next').onclick=()=>show(cur+1);
+$('ft').onclick=()=>{fit=fit==='w'?'h':'w';v.className=fit==='h'?'fh':'fw';sv('qf',fit);v.scrollTop=0;toast(fit==='w'?'По ширине':'Целая страница')};
+addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'||e.key==='PageDown')show(cur+1);if(e.key==='ArrowLeft'||e.key==='PageUp')show(cur-1)});
+let sx=null,sy=0,stt=0;
+v.addEventListener('touchstart',e=>{if(e.touches.length!==1){sx=null;return}sx=e.touches[0].clientX;sy=e.touches[0].clientY;stt=Date.now()},{passive:true});
+v.addEventListener('touchend',e=>{if(sx===null)return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;sx=null;
+  if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.6&&Date.now()-stt<700)show(cur+(dx<0?1:-1))},{passive:true});
+function open(node){pn.innerHTML='';pn.appendChild(node);sh.classList.add('on')}
+function close(){sh.classList.remove('on')}
+sh.addEventListener('click',e=>{if(e.target===sh)close()});
+function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function saveMarks(){sv('qbm',JSON.stringify(marks))}
+mk.onclick=()=>{
+  const m=marks[cur];let sel=m?m.c:0;
+  const w=el('div');w.appendChild(el('h3',null,'Метка — стр. '+cur));
+  const sw=el('div','sw');
+  COL.forEach((c,i)=>{const d=el('i',i===sel?'s':'');d.style.background=c;d.onclick=()=>{sel=i;[...sw.children].forEach((x,j)=>x.classList.toggle('s',j===i))};sw.appendChild(d)});
+  w.appendChild(sw);
+  const t=el('input');t.type='text';t.placeholder='Комментарий, например: имя суры';t.maxLength=80;t.value=m?m.t:'';w.appendChild(t);
+  const r=el('div','row');
+  const ok=el('button','b','Сохранить');ok.onclick=()=>{marks[cur]={c:sel,t:t.value.trim()};saveMarks();draw();close();toast('Метка сохранена')};
+  r.appendChild(ok);
+  if(m){const del=el('button','b','Удалить');del.onclick=()=>{delete marks[cur];saveMarks();draw();close();toast('Метка удалена')};r.appendChild(del)}
+  const cn=el('button','b','Отмена');cn.onclick=close;r.appendChild(cn);
+  w.appendChild(r);open(w);
+};
+$('ls').onclick=()=>{
+  const w=el('div');w.appendChild(el('h3',null,'Мои метки'));
+  const ks=Object.keys(marks).map(Number).sort((a,b)=>a-b);
+  if(!ks.length)w.appendChild(el('div','em','Меток пока нет. Нажмите 🔖, чтобы поставить метку на текущей странице.'));
+  ks.forEach(p=>{const m=marks[p],r=el('div','li');const i=el('i');i.style.background=COL[m.c];r.appendChild(i);r.appendChild(el('b',null,'стр. '+p));r.appendChild(el('span',null,m.t||''));r.onclick=()=>{close();show(p)};w.appendChild(r)});
+  const r=el('div','row');const cn=el('button','b','Закрыть');cn.onclick=close;r.appendChild(cn);w.appendChild(r);open(w);
+};
+const norm=s=>s.toLowerCase().replace(/['’ʼ‘`ʻ]/g,'').replace(/ё/g,'е');
+const words=s=>norm(s).split(/[\s\-]+/).filter(Boolean);
+$('sr').onclick=()=>{
+  const w=el('div');w.appendChild(el('h3',null,'Суры'));
+  const q=el('input','sq');q.type='text';q.placeholder='Поиск: введите 1–3 буквы или номер';q.autocomplete='off';q.setAttribute('autocapitalize','off');w.appendChild(q);
+  const lst=el('div','sl');w.appendChild(lst);
+  const here=PM[cur-1]||[];
+  function fill(){
+    const k=norm(q.value.trim());lst.innerHTML='';let n=0;
+    for(let i=1;i<=114;i++){
+      if(k&&!(String(i).startsWith(k)||words(UZ[i-1]).some(x=>x.startsWith(k))||words(RU[i-1]).some(x=>x.startsWith(k))))continue;
+      const r=el('div','su'+(here.includes(i)?' cu':''));
+      r.appendChild(el('div','no',String(i)));
+      const nm=el('div','nm');nm.appendChild(el('b',null,UZ[i-1]));nm.appendChild(el('small',null,RU[i-1]));r.appendChild(nm);
+      r.appendChild(el('div','pg','стр. '+START[i-1]));
+      r.onclick=()=>{close();show(START[i-1])};lst.appendChild(r);n++;
+    }
+    if(!n)lst.appendChild(el('div','em','Ничего не найдено'));
+  }
+  q.oninput=fill;fill();
+  const r=el('div','row');const cn=el('button','b','Закрыть');cn.onclick=close;r.appendChild(cn);w.appendChild(r);
+  open(w);setTimeout(()=>{const c=lst.querySelector('.cu');if(c)c.scrollIntoView({block:'center'})},50);
+};
+const s0=+lg('qp',1)||1;show(s0);if(s0>1)toast('Продолжаем со стр. '+s0);
+let newer=false,busy=false;
+function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?'Обновляю…':newer?'Есть обновление — обновить':'Версия '+VER}
+async function hardRefresh(){
+  newer=false;busy=true;drawVer();
+  try{const rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(r=>r.unregister()))}catch(e){}
+  try{const ks=await caches.keys();await Promise.all(ks.filter(k=>k!=='img-'+IMGV).map(k=>caches.delete(k)))}catch(e){}
+  const u=new URL(location.href);u.searchParams.set('u',Date.now());location.replace(u.toString());
+}
+async function checkVer(){
+  try{const r=await fetch('./version.json?'+Date.now(),{cache:'no-store'});if(!r.ok)return;const j=await r.json();
+    const n=!!j.v&&j.v!==VER;if(n!==newer){newer=n;drawVer();if(n)toast('Есть обновление')}}catch(e){}
+}
+$('ver').onclick=async()=>{if(newer)return hardRefresh();await checkVer();toast(newer?'Есть обновление':'Версия '+VER+' — последняя')};
+drawVer();checkVer();setInterval(checkVer,5*60e3);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkVer()});
+addEventListener('pagehide',()=>sv('qp',cur));
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?i='+IMGV).catch(()=>{});
+</script>
+</body>
+</html>
