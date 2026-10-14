@@ -40,7 +40,7 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
 #v.fw img{width:100%;height:auto}
 #v.fh img{height:calc(100vh - var(--bh,50px) - 40px);height:calc(100dvh - var(--bh,50px) - 40px);width:auto}
 img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:multiply}
-#rib{position:absolute;top:0;right:24px;width:21px;height:42px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
+#rib{position:absolute;top:0;right:42px;width:21px;height:42px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
 #sh{position:fixed;inset:0;background:rgba(5,16,10,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:10;display:none;align-items:center;justify-content:center;padding:12px}
 #sh.on{display:flex}
 .pn{width:min(320px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#2f6046,#1a3d2b);border:1px solid var(--edge);border-radius:16px;padding:9px 11px 9px;
@@ -103,7 +103,7 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
 <script>
-const VER='3.1',IMGV=3;
+const VER='3.2',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
 const sheet=$('sheet'),v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Al-Fotiha|Al-Baqara|Oli Imron|An-Niso|Al-Moida|Al-An'om|Al-A'rof|Al-Anfol|At-Tavba|Yunus|Hud|Yusuf|Ar-Ra'd|Ibrohim|Al-Hijr|An-Nahl|Al-Isro|Al-Kahf|Maryam|Toha|Al-Anbiyo|Al-Haj|Al-Mu'minun|An-Nur|Al-Furqon|Ash-Shuaro|An-Naml|Al-Qasas|Al-Ankabut|Ar-Rum|Luqmon|As-Sajda|Al-Ahzob|Saba|Fotir|Yosin|As-Soffot|Sod|Az-Zumar|G'ofir|Fussilat|Ash-Shuro|Az-Zuxruf|Ad-Duxon|Al-Josiya|Al-Ahqof|Muhammad|Al-Fath|Al-Hujurot|Qof|Az-Zoriyot|At-Tur|An-Najm|Al-Qamar|Ar-Rahmon|Al-Voqe'a|Al-Hadid|Al-Mujodala|Al-Hashr|Al-Mumtahana|As-Soff|Al-Jum'a|Al-Munofiqun|At-Tag'obun|At-Taloq|At-Tahrim|Al-Mulk|Al-Qalam|Al-Haqqa|Al-Ma'orij|Nuh|Al-Jinn|Al-Muzzammil|Al-Muddassir|Al-Qiyoma|Al-Inson|Al-Mursalot|An-Naba'|An-Nozi'ot|Abasa|At-Takvir|Al-Infitor|Al-Mutaffifin|Al-Inshiqoq|Al-Buruj|At-Toriq|Al-A'lo|Al-G'oshiya|Al-Fajr|Al-Balad|Ash-Shams|Al-Layl|Az-Zuho|Ash-Sharh|At-Tin|Al-Alaq|Al-Qadr|Al-Bayyina|Az-Zalzala|Al-Odiyot|Al-Qori'a|At-Takosur|Al-Asr|Al-Humaza|Al-Fil|Quraysh|Al-Mo'un|Al-Kavsar|Al-Kofirun|An-Nasr|Al-Masad|Al-Ixlos|Al-Falaq|An-Nos".split('|');
