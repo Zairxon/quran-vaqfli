@@ -103,9 +103,9 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
 <script>
-const VER='3.0',IMGV=3;
+const VER='3.1',IMGV=3;
 const N=604,$=id=>document.getElementById(id);
-const v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
+const sheet=$('sheet'),v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Al-Fotiha|Al-Baqara|Oli Imron|An-Niso|Al-Moida|Al-An'om|Al-A'rof|Al-Anfol|At-Tavba|Yunus|Hud|Yusuf|Ar-Ra'd|Ibrohim|Al-Hijr|An-Nahl|Al-Isro|Al-Kahf|Maryam|Toha|Al-Anbiyo|Al-Haj|Al-Mu'minun|An-Nur|Al-Furqon|Ash-Shuaro|An-Naml|Al-Qasas|Al-Ankabut|Ar-Rum|Luqmon|As-Sajda|Al-Ahzob|Saba|Fotir|Yosin|As-Soffot|Sod|Az-Zumar|G'ofir|Fussilat|Ash-Shuro|Az-Zuxruf|Ad-Duxon|Al-Josiya|Al-Ahqof|Muhammad|Al-Fath|Al-Hujurot|Qof|Az-Zoriyot|At-Tur|An-Najm|Al-Qamar|Ar-Rahmon|Al-Voqe'a|Al-Hadid|Al-Mujodala|Al-Hashr|Al-Mumtahana|As-Soff|Al-Jum'a|Al-Munofiqun|At-Tag'obun|At-Taloq|At-Tahrim|Al-Mulk|Al-Qalam|Al-Haqqa|Al-Ma'orij|Nuh|Al-Jinn|Al-Muzzammil|Al-Muddassir|Al-Qiyoma|Al-Inson|Al-Mursalot|An-Naba'|An-Nozi'ot|Abasa|At-Takvir|Al-Infitor|Al-Mutaffifin|Al-Inshiqoq|Al-Buruj|At-Toriq|Al-A'lo|Al-G'oshiya|Al-Fajr|Al-Balad|Ash-Shams|Al-Layl|Az-Zuho|Ash-Sharh|At-Tin|Al-Alaq|Al-Qadr|Al-Bayyina|Az-Zalzala|Al-Odiyot|Al-Qori'a|At-Takosur|Al-Asr|Al-Humaza|Al-Fil|Quraysh|Al-Mo'un|Al-Kavsar|Al-Kofirun|An-Nasr|Al-Masad|Al-Ixlos|Al-Falaq|An-Nos".split('|');
 const RU="Аль-Фатиха|Аль-Бакара|Али Имран|Ан-Ниса|Аль-Маида|Аль-Анам|Аль-Араф|Аль-Анфаль|Ат-Тауба|Юнус|Худ|Юсуф|Ар-Рад|Ибрахим|Аль-Хиджр|Ан-Нахль|Аль-Исра|Аль-Кахф|Марьям|Та Ха|Аль-Анбия|Аль-Хаджж|Аль-Муминун|Ан-Нур|Аль-Фуркан|Аш-Шуара|Ан-Намль|Аль-Касас|Аль-Анкабут|Ар-Рум|Лукман|Ас-Саджда|Аль-Ахзаб|Саба|Фатыр|Йа Син|Ас-Саффат|Сад|Аз-Зумар|Гафир|Фуссылат|Аш-Шура|Аз-Зухруф|Ад-Духан|Аль-Джасия|Аль-Ахкаф|Мухаммад|Аль-Фатх|Аль-Худжурат|Каф|Аз-Зарият|Ат-Тур|Ан-Наджм|Аль-Камар|Ар-Рахман|Аль-Вакиа|Аль-Хадид|Аль-Муджадала|Аль-Хашр|Аль-Мумтахана|Ас-Сафф|Аль-Джума|Аль-Мунафикун|Ат-Тагабун|Ат-Талак|Ат-Тахрим|Аль-Мульк|Аль-Калям|Аль-Хакка|Аль-Маариж|Нух|Аль-Джинн|Аль-Музаммиль|Аль-Муддассир|Аль-Кияма|Аль-Инсан|Аль-Мурсалят|Ан-Наба|Ан-Назиат|Абаса|Ат-Таквир|Аль-Инфитар|Аль-Мутаффифин|Аль-Иншикак|Аль-Бурудж|Ат-Тарик|Аль-Аля|Аль-Гашия|Аль-Фаджр|Аль-Баляд|Аш-Шамс|Аль-Лейл|Ад-Духа|Аш-Шарх|Ат-Тин|Аль-Аляк|Аль-Кадр|Аль-Баййина|Аз-Зальзаля|Аль-Адият|Аль-Кариа|Ат-Такасур|Аль-Аср|Аль-Хумаза|Аль-Филь|Курайш|Аль-Маун|Аль-Каусар|Аль-Кафирун|Ан-Наср|Аль-Масад|Аль-Ихлас|Аль-Фалак|Ан-Нас".split('|');
 const START=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,332,342,350,359,367,377,385,396,404,411,415,418,428,434,440,446,453,458,467,477,483,489,496,499,502,507,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,566,568,570,572,574,575,577,578,580,582,583,585,586,587,587,589,590,591,591,592,593,594,595,595,596,596,597,597,598,598,599,599,600,600,601,601,601,602,602,602,603,603,603,604,604,604];
@@ -162,16 +162,22 @@ function toast(m,ms){tt.textContent=m;tt.style.opacity=1;clearTimeout(toast.h);t
 function draw(){
   const m=marks[cur];
   rib.style.display=m?'block':'none';
+  if(m)rib.style.top=Math.min(Math.max(0,(m.y||0)*sheet.offsetHeight),Math.max(0,sheet.offsetHeight-44))+'px';
   if(m)rib.style.backgroundImage=ribbon(COL[m.c]);
   mk.style.background=m?COL[m.c]:'';mk.style.borderColor=m?'#fff':'';
   cm.hidden=!(m&&m.t);cm.textContent=m?m.t:'';
   $('srt').textContent=(PM[cur-1]||[]).map(nm).join(' · ');
 }
-function show(i){
+let pendY=null;
+const curY=()=>sheet.offsetHeight?Math.max(0,v.scrollTop-sheet.offsetTop)/sheet.offsetHeight:0;
+function applyY(){if(pendY===null)return;const yy=pendY;pendY=null;v.scrollTop=Math.max(0,sheet.offsetTop+yy*sheet.offsetHeight-2)}
+function show(i,y){
   cur=Math.max(1,Math.min(N,i|0||1));
-  img.style.opacity=.3;img.onload=()=>img.style.opacity=1;img.src=src(cur);
+  pendY=y>0?y:null;
+  img.style.opacity=.3;img.onload=()=>{img.style.opacity=1;draw();applyY()};img.src=src(cur);
   img.style.marginTop=NOCROP.includes(cur)?'0':'';
-  v.scrollTop=0;inp.value=cur;sv('qp',cur);draw();
+  v.scrollTop=0;inp.value=cur;sv('qp',cur);sv('qy',y>0?y:0);draw();
+  if(img.complete&&img.naturalWidth)requestAnimationFrame(()=>{draw();applyY()});
   if(cur<N)new Image().src=src(cur+1);
   if(cur>1)new Image().src=src(cur-1);
 }
@@ -214,7 +220,7 @@ mk.onclick=()=>{
   w.appendChild(sw);
   const ti=el('input');ti.type='text';ti.placeholder=t('comment_ph');ti.maxLength=80;ti.value=m?m.t:'';w.appendChild(ti);
   const r=el('div','row');
-  const ok=el('button','b',t('save'));ok.onclick=()=>{marks[cur]={c:sel,t:ti.value.trim()};saveMarks();draw();close();toast(t('saved'))};
+  const ok=el('button','b',t('save'));ok.onclick=()=>{marks[cur]={c:sel,t:ti.value.trim(),y:+curY().toFixed(4)};saveMarks();draw();close();toast(t('saved'))};
   r.appendChild(ok);
   if(m){const del=el('button','b',t('del'));del.onclick=()=>{delete marks[cur];saveMarks();draw();close();toast(t('deleted'))};r.appendChild(del)}
   const cn=el('button','b',t('close'));cn.onclick=close;r.appendChild(cn);
@@ -223,7 +229,7 @@ mk.onclick=()=>{
   w.appendChild(el('div','sub',t('my_marks')+(ks.length?' · '+ks.length:'')));
   const lst=el('div','sl');
   if(!ks.length)lst.appendChild(el('div','em',t('no_marks')));
-  ks.forEach(p=>{const mm=marks[p],row=el('div','li'+(p===cur?' cu':''));const i=el('i');i.style.background=COL[mm.c];row.appendChild(i);row.appendChild(el('b',null,t('page',{n:p})));row.appendChild(el('span',null,mm.t||''));row.onclick=()=>{close();show(p)};lst.appendChild(row)});
+  ks.forEach(p=>{const mm=marks[p],row=el('div','li'+(p===cur?' cu':''));const i=el('i');i.style.background=COL[mm.c];row.appendChild(i);row.appendChild(el('b',null,t('page',{n:p})));row.appendChild(el('span',null,mm.t||''));row.onclick=()=>{close();show(p,mm.y)};lst.appendChild(row)});
   w.appendChild(lst);open(w);
 };
 const norm=s=>s.toLowerCase().replace(/['’ʼ‘`ʻ]/g,'').replace(/ё/g,'е').replace(/ў/g,'у').replace(/қ/g,'к').replace(/ғ/g,'г').replace(/ҳ/g,'х').replace(/ъ/g,'');
@@ -255,7 +261,10 @@ $('lg').onclick=()=>{
   LANGS.forEach(([c,label,code])=>{const r=el('div','su'+(c===lang?' cu':''));r.appendChild(el('div','no',code));const nmE=el('div','nm');nmE.appendChild(el('b',null,label));r.appendChild(nmE);r.onclick=()=>{setLang(c);close()};w.appendChild(r)});
   const r=el('div','row');const cn=el('button','b',t('close'));cn.onclick=close;r.appendChild(cn);w.appendChild(r);open(w);
 };
-const s0=+lg('qp',1)||1;show(s0);const hc=+lg('qh',0);if(hc<3){sv('qh',hc+1);setTimeout(()=>toast(t('hint'),4200),900)}if(s0>1)toast(t('resume',{n:s0}));
+const s0=+lg('qp',1)||1;show(s0,+lg('qy',0));
+let sT;v.addEventListener('scroll',()=>{clearTimeout(sT);sT=setTimeout(()=>sv('qy',curY().toFixed(4)),250)},{passive:true});
+if(window.ResizeObserver)new ResizeObserver(()=>draw()).observe(sheet);
+const hc=+lg('qh',0);if(hc<3){sv('qh',hc+1);setTimeout(()=>toast(t('hint'),4200),900)}if(s0>1)toast(t('resume',{n:s0}));
 let newer=false,busy=false;
 function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?t('updating'):newer?t('update'):'v'+VER}
 async function hardRefresh(){
