@@ -1,0 +1,14 @@
+{
+  "name": "quran-apk",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Android-обёртка (Capacitor) для Vaqfli Qur'on: все страницы внутри APK",
+  "dependencies": {
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/core": "^6.2.1"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.2.1"
+  }
+}

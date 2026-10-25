@@ -1,2 +1,7 @@
 server.cjs
 start-server.bat
+
+# APK
+apk/node_modules/
+apk/www/
+apk/android/

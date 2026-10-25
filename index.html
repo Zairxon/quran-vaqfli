@@ -114,7 +114,9 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
 <div id="t"></div>
 <button id="hp" type="button">?</button>
 <script>
-const VER='3.4',IMGV=3;
+const VER='3.5',IMGV=3;
+const NATIVE=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+const SITE='https://zairxon.github.io/quran-vaqfli/',APK_URL='https://github.com/Zairxon/quran-vaqfli/releases/download/latest/quran.apk';
 const N=604,$=id=>document.getElementById(id);
 const sheet=$('sheet'),v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Al-Fotiha|Al-Baqara|Oli Imron|An-Niso|Al-Moida|Al-An'om|Al-A'rof|Al-Anfol|At-Tavba|Yunus|Hud|Yusuf|Ar-Ra'd|Ibrohim|Al-Hijr|An-Nahl|Al-Isro|Al-Kahf|Maryam|Toha|Al-Anbiyo|Al-Haj|Al-Mu'minun|An-Nur|Al-Furqon|Ash-Shuaro|An-Naml|Al-Qasas|Al-Ankabut|Ar-Rum|Luqmon|As-Sajda|Al-Ahzob|Saba|Fotir|Yosin|As-Soffot|Sod|Az-Zumar|G'ofir|Fussilat|Ash-Shuro|Az-Zuxruf|Ad-Duxon|Al-Josiya|Al-Ahqof|Muhammad|Al-Fath|Al-Hujurot|Qof|Az-Zoriyot|At-Tur|An-Najm|Al-Qamar|Ar-Rahmon|Al-Voqe'a|Al-Hadid|Al-Mujodala|Al-Hashr|Al-Mumtahana|As-Soff|Al-Jum'a|Al-Munofiqun|At-Tag'obun|At-Taloq|At-Tahrim|Al-Mulk|Al-Qalam|Al-Haqqa|Al-Ma'orij|Nuh|Al-Jinn|Al-Muzzammil|Al-Muddassir|Al-Qiyoma|Al-Inson|Al-Mursalot|An-Naba'|An-Nozi'ot|Abasa|At-Takvir|Al-Infitor|Al-Mutaffifin|Al-Inshiqoq|Al-Buruj|At-Toriq|Al-A'lo|Al-G'oshiya|Al-Fajr|Al-Balad|Ash-Shams|Al-Layl|Az-Zuho|Ash-Sharh|At-Tin|Al-Alaq|Al-Qadr|Al-Bayyina|Az-Zalzala|Al-Odiyot|Al-Qori'a|At-Takosur|Al-Asr|Al-Humaza|Al-Fil|Quraysh|Al-Mo'un|Al-Kavsar|Al-Kofirun|An-Nasr|Al-Masad|Al-Ixlos|Al-Falaq|An-Nos".split('|');
@@ -295,7 +297,7 @@ function openHelp(){
   LANGS.forEach(([c,label,code])=>{const b=el('button','b'+(c===lang?' on':''),code);b.title=label;b.onclick=()=>{setLang(c);openHelp()};lr.appendChild(b)});
   w.appendChild(lr);
   const box=el('div','hp');
-  if(!standalone){
+  if(!standalone&&!NATIVE){
     box.appendChild(el('h4',null,t('inst_title')));
     const a=el('p',isAndroid?'hl':'',t('inst_android')),i=el('p',isIOS?'hl':'',t('inst_ios'));
     if(isIOS){box.appendChild(i);box.appendChild(a)}else{box.appendChild(a);box.appendChild(i)}
@@ -315,20 +317,21 @@ if(!lg('qhelp',''))setTimeout(openHelp,600);if(s0>1)toast(t('resume',{n:s0}));
 let newer=false,busy=false;
 function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?t('updating'):newer?t('update'):'v'+VER}
 async function hardRefresh(){
+  if(NATIVE){location.href=APK_URL;return}
   newer=false;busy=true;drawVer();
   try{const rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(r=>r.unregister()))}catch(e){}
   try{const ks=await caches.keys();await Promise.all(ks.filter(k=>k!=='img-'+IMGV).map(k=>caches.delete(k)))}catch(e){}
   const u=new URL(location.href);u.searchParams.set('u',Date.now());location.replace(u.toString());
 }
 async function checkVer(){
-  try{const r=await fetch('./version.json?'+Date.now(),{cache:'no-store'});if(!r.ok)return;const j=await r.json();
+  try{const r=await fetch((NATIVE?SITE:'./')+'version.json?'+Date.now(),{cache:'no-store'});if(!r.ok)return;const j=await r.json();
     const n=!!j.v&&j.v!==VER;if(n!==newer){newer=n;drawVer();if(n){toast(t('update_toast'));showBar()}}}catch(e){}
 }
 $('ver').onclick=async()=>{if(newer)return hardRefresh();await checkVer();toast(newer?t('update_toast'):t('latest',{v:VER}))};
 drawVer();checkVer();setLang(lang);setInterval(checkVer,5*60e3);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkVer()});
 addEventListener('pagehide',()=>sv('qp',cur));
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?i='+IMGV).catch(()=>{});
+if('serviceWorker'in navigator&&!NATIVE)navigator.serviceWorker.register('sw.js?i='+IMGV).catch(()=>{});
 </script>
 </body>
 </html>

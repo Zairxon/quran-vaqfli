@@ -1,0 +1,62 @@
+name: APK
+
+# Сборка APK на серверах GitHub. Запускается при пуше в main и вручную (вкладка Actions → Run workflow).
+# Готовый файл: Releases → latest → quran.apk (качать на телефоне и устанавливать).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Зависимости
+        working-directory: apk
+        run: npm install --no-audit --no-fund
+
+      - name: Папка www и проект Android
+        working-directory: apk
+        run: |
+          node prepare-www.cjs
+          npx cap add android
+          node setup.cjs
+          mkdir -p assets && npx capacitor-assets generate --android --assetPath assets --iconBackgroundColor '#0d2016' --iconBackgroundColorDark '#0d2016'
+          npx cap sync android
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Ключ подписи и сборка
+        working-directory: apk/android
+        env:
+          KS_B64: ${{ secrets.KS_B64 }}
+          KS_PASS: ${{ secrets.KS_PASS }}
+        run: |
+          echo "$KS_B64" | base64 -d > app/quran.keystore
+          VER=$(grep -o "const VER='[0-9.]*'" ../../index.html | head -1 | grep -o "[0-9.]*")
+          echo "APK_VERSION=$VER" >> "$GITHUB_ENV"
+          chmod +x gradlew
+          APK_BUILD=${{ github.run_number }} APK_VERSION=$VER ./gradlew assembleRelease --no-daemon
+
+      - name: Обновить релиз latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp apk/android/app/build/outputs/apk/release/app-release.apk quran.apk
+          ls -la quran.apk
+          NOTES="Версия ${APK_VERSION}. Собрано: $(date '+%Y-%m-%d %H:%M') UTC, коммит ${GITHUB_SHA::7}. Все страницы внутри приложения, интернет нужен только для проверки обновлений."
+          gh release delete latest --cleanup-tag --yes 2>/dev/null || true
+          gh release create latest quran.apk --target "${GITHUB_SHA}" --title "Vaqfli Qur'on ${APK_VERSION} (APK)" --prerelease --notes "$NOTES"
