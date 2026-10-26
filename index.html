@@ -34,13 +34,14 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
 #sr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #v{touch-action:pan-y pinch-zoom;overscroll-behavior:contain;position:absolute;top:0;bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px 10px 30px;scrollbar-color:#4f8a63 #0f2a1c}
 #v::-webkit-scrollbar{width:10px}#v::-webkit-scrollbar-track{background:#0f2a1c}#v::-webkit-scrollbar-thumb{background:#4f8a63;border-radius:6px;border:2px solid #0f2a1c}
-#sheet{position:relative;width:fit-content;margin:0 auto;background:#fff url(frame4.jpg) center/106% 106% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
+.sheet{position:relative;width:min(100%,1000px);aspect-ratio:1640/2296.04;margin:0 auto 6px;background:#fff url(frame4.jpg) center/106% 106% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
  box-shadow:0 0 0 1px rgba(227,203,133,.28),0 14px 40px rgba(8,3,1,.65),0 3px 8px rgba(8,3,1,.5)}
-#v.fw #sheet{width:min(100%,1000px)}
-#v.fw img{width:100%;height:auto}
-#v.fh img{height:calc(100vh - var(--bh,50px) - 40px);height:calc(100dvh - var(--bh,50px) - 40px);width:auto}
-img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:multiply}
-#rib{position:absolute;top:0;right:32px;width:21px;height:42px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
+.sheet.nc{aspect-ratio:1640/2360}
+#v.fh .sheet{width:min(100%,calc((100vh - 40px) * .7143));width:min(100%,calc((100dvh - 40px) * .7143))}
+.sheet img{position:absolute;left:0;top:0;width:100%;height:auto;display:block;margin-top:-3.9%;mix-blend-mode:multiply;opacity:0;transition:opacity .2s}
+.sheet.nc img{margin-top:0}
+.sheet img.l{opacity:1}
+.rib{position:absolute;top:0;right:32px;width:21px;height:42px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
 #sh{position:fixed;inset:0;background:rgba(5,16,10,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:10;display:none;align-items:center;justify-content:center;padding:12px}
 #sh.on{display:flex}
 .pn{width:min(320px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#2f6046,#1a3d2b);border:1px solid var(--edge);border-radius:16px;padding:9px 11px 9px;
@@ -109,16 +110,16 @@ img#pg{display:block;transition:opacity .18s;margin-top:-3.9%;mix-blend-mode:mul
  </div>
  <button class="b" id="sr" title="Суры"><svg class="i" viewBox="0 0 24 24"><path d="M3 5c3-1.2 6-1 9 1 3-2 6-2.200 9-1v13c-3-1.200-6-1-9 1-3-2-6-2.200-9-1z"/><path d="M12 6v13"/></svg><span id="srt"></span></button>
 </div>
-<div id="v" class="fw"><div id="sheet"><img id="pg" alt=""><div id="rib"></div></div></div>
+<div id="v" class="fw"><div id="pages"></div></div>
 <div id="sh"><div class="pn" id="pn"></div></div>
 <div id="t"></div>
 <button id="hp" type="button">?</button>
 <script>
-const VER='3.8',IMGV=3;
+const VER='3.9',IMGV=3;
 const NATIVE=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
 const SITE='https://zairxon.github.io/quran-vaqfli/',APK_URL='https://github.com/Zairxon/quran-vaqfli/releases/download/latest/quran.apk';
 const N=604,$=id=>document.getElementById(id);
-const sheet=$('sheet'),v=$('v'),img=$('pg'),inp=$('n'),rib=$('rib'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
+const v=$('v'),pages=$('pages'),inp=$('n'),mk=$('mk'),cm=$('cm'),sh=$('sh'),pn=$('pn'),tt=$('t');
 const UZ="Al-Fotiha|Al-Baqara|Oli Imron|An-Niso|Al-Moida|Al-An'om|Al-A'rof|Al-Anfol|At-Tavba|Yunus|Hud|Yusuf|Ar-Ra'd|Ibrohim|Al-Hijr|An-Nahl|Al-Isro|Al-Kahf|Maryam|Toha|Al-Anbiyo|Al-Haj|Al-Mu'minun|An-Nur|Al-Furqon|Ash-Shuaro|An-Naml|Al-Qasas|Al-Ankabut|Ar-Rum|Luqmon|As-Sajda|Al-Ahzob|Saba|Fotir|Yosin|As-Soffot|Sod|Az-Zumar|G'ofir|Fussilat|Ash-Shuro|Az-Zuxruf|Ad-Duxon|Al-Josiya|Al-Ahqof|Muhammad|Al-Fath|Al-Hujurot|Qof|Az-Zoriyot|At-Tur|An-Najm|Al-Qamar|Ar-Rahmon|Al-Voqe'a|Al-Hadid|Al-Mujodala|Al-Hashr|Al-Mumtahana|As-Soff|Al-Jum'a|Al-Munofiqun|At-Tag'obun|At-Taloq|At-Tahrim|Al-Mulk|Al-Qalam|Al-Haqqa|Al-Ma'orij|Nuh|Al-Jinn|Al-Muzzammil|Al-Muddassir|Al-Qiyoma|Al-Inson|Al-Mursalot|An-Naba'|An-Nozi'ot|Abasa|At-Takvir|Al-Infitor|Al-Mutaffifin|Al-Inshiqoq|Al-Buruj|At-Toriq|Al-A'lo|Al-G'oshiya|Al-Fajr|Al-Balad|Ash-Shams|Al-Layl|Az-Zuho|Ash-Sharh|At-Tin|Al-Alaq|Al-Qadr|Al-Bayyina|Az-Zalzala|Al-Odiyot|Al-Qori'a|At-Takosur|Al-Asr|Al-Humaza|Al-Fil|Quraysh|Al-Mo'un|Al-Kavsar|Al-Kofirun|An-Nasr|Al-Masad|Al-Ixlos|Al-Falaq|An-Nos".split('|');
 const RU="Аль-Фатиха|Аль-Бакара|Али Имран|Ан-Ниса|Аль-Маида|Аль-Анам|Аль-Араф|Аль-Анфаль|Ат-Тауба|Юнус|Худ|Юсуф|Ар-Рад|Ибрахим|Аль-Хиджр|Ан-Нахль|Аль-Исра|Аль-Кахф|Марьям|Та Ха|Аль-Анбия|Аль-Хаджж|Аль-Муминун|Ан-Нур|Аль-Фуркан|Аш-Шуара|Ан-Намль|Аль-Касас|Аль-Анкабут|Ар-Рум|Лукман|Ас-Саджда|Аль-Ахзаб|Саба|Фатыр|Йа Син|Ас-Саффат|Сад|Аз-Зумар|Гафир|Фуссылат|Аш-Шура|Аз-Зухруф|Ад-Духан|Аль-Джасия|Аль-Ахкаф|Мухаммад|Аль-Фатх|Аль-Худжурат|Каф|Аз-Зарият|Ат-Тур|Ан-Наджм|Аль-Камар|Ар-Рахман|Аль-Вакиа|Аль-Хадид|Аль-Муджадала|Аль-Хашр|Аль-Мумтахана|Ас-Сафф|Аль-Джума|Аль-Мунафикун|Ат-Тагабун|Ат-Талак|Ат-Тахрим|Аль-Мульк|Аль-Калям|Аль-Хакка|Аль-Маариж|Нух|Аль-Джинн|Аль-Музаммиль|Аль-Муддассир|Аль-Кияма|Аль-Инсан|Аль-Мурсалят|Ан-Наба|Ан-Назиат|Абаса|Ат-Таквир|Аль-Инфитар|Аль-Мутаффифин|Аль-Иншикак|Аль-Бурудж|Ат-Тарик|Аль-Аля|Аль-Гашия|Аль-Фаджр|Аль-Баляд|Аш-Шамс|Аль-Лейл|Ад-Духа|Аш-Шарх|Ат-Тин|Аль-Аляк|Аль-Кадр|Аль-Баййина|Аз-Зальзаля|Аль-Адият|Аль-Кариа|Ат-Такасур|Аль-Аср|Аль-Хумаза|Аль-Филь|Курайш|Аль-Маун|Аль-Каусар|Аль-Кафирун|Ан-Наср|Аль-Масад|Аль-Ихлас|Аль-Фалак|Ан-Нас".split('|');
 const START=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,332,342,350,359,367,377,385,396,404,411,415,418,428,434,440,446,453,458,467,477,483,489,496,499,502,507,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,566,568,570,572,574,575,577,578,580,582,583,585,586,587,587,589,590,591,591,592,593,594,595,595,596,596,597,597,598,598,599,599,600,600,601,601,601,602,602,602,603,603,603,604,604,604];
@@ -172,33 +173,43 @@ function setLang(l){lang=l;const hb=$('hp');if(hb)hb.title=t('help_tip');sv('ql'
 const src=i=>'pages/p-'+String(i-1).padStart(3,'0')+'.jpg?v='+IMGV+(REST.has(i)?'r':'');
 function ribbon(c){const s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 30"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset=".45" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient><filter id="f" x="-40%" y="-10%" width="180%" height="150%"><feDropShadow dx="1" dy="1.6" stdDeviation="1.1" flood-opacity=".6"/></filter></defs><g filter="url(#f)"><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="'+c+'"/><path d="M1.5 0H12.5V24L7 19.5L1.5 24Z" fill="url(#g)"/></g></svg>';return 'url("data:image/svg+xml,'+encodeURIComponent(s)+'")'}
 function toast(m,ms){tt.textContent=m;tt.style.opacity=1;clearTimeout(toast.h);toast.h=setTimeout(()=>tt.style.opacity=0,ms||1800)}
+const sheets=[null];
+for(let i=1;i<=N;i++){const e=document.createElement('div');e.className='sheet'+(NOCROP.includes(i)?' nc':'');const r=document.createElement('div');r.className='rib';e.appendChild(r);e._r=r;e._i=i;pages.appendChild(e);sheets.push(e)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{const p=e.target;
+  if(e.isIntersecting){if(!p._m){const m=new Image();m.alt='';m.decoding='async';m.onload=()=>m.classList.add('l');m.src=src(p._i);p.insertBefore(m,p._r);p._m=m}}
+  else if(p._m){p._m.remove();p._m=null}}),{root:v,rootMargin:'150% 0px'});
+sheets.forEach((p,i)=>i&&io.observe(p));
+let ribOn=[];
+function drawRibs(){
+  ribOn.forEach(p=>p._r.style.display='none');ribOn=[];
+  for(const k in marks){const m=marks[k],p=sheets[+k];if(!p)continue;const r=p._r;r.style.display='block';r.style.top='min('+((m.y||0)*100)+'%, calc(100% - 44px))';r.style.backgroundImage=ribbon(COL[m.c]);ribOn.push(p)}
+}
 function draw(){
   const m=marks[cur];
-  rib.style.display=m?'block':'none';
-  if(m)rib.style.top=Math.min(Math.max(0,(m.y||0)*sheet.offsetHeight),Math.max(0,sheet.offsetHeight-44))+'px';
-  if(m)rib.style.backgroundImage=ribbon(COL[m.c]);
   mk.style.background=m?COL[m.c]:'';mk.style.borderColor=m?'#fff':'';
   cm.hidden=!(m&&m.t);cm.textContent=m?m.t:'';
   $('srt').textContent=(PM[cur-1]||[]).map(nm).join(' · ');
 }
-let pendY=null;
-const curY=()=>sheet.offsetHeight?Math.max(0,v.scrollTop-sheet.offsetTop)/sheet.offsetHeight:0;
-function applyY(){if(pendY===null)return;const yy=pendY;pendY=null;v.scrollTop=Math.max(0,sheet.offsetTop+yy*sheet.offsetHeight-2)}
+// страница и доля прокрутки у верхнего края экрана
+function at(){const y=v.scrollTop+4;let c=cur;while(c<N&&sheets[c+1].offsetTop<=y)c++;while(c>1&&sheets[c].offsetTop>y)c--;const p=sheets[c];return [c,Math.max(0,(y-p.offsetTop)/p.offsetHeight)]}
+let lastAt=[1,0];
+function savePos(){lastAt=at();sv('qp',lastAt[0]);sv('qy',lastAt[1].toFixed(4))}
 function show(i,y){
-  cur=Math.max(1,Math.min(N,i|0||1));
-  pendY=y>0?y:null;
-  img.style.opacity=.3;img.onload=()=>{img.style.opacity=1;draw();applyY()};img.src=src(cur);
-  img.style.marginTop=NOCROP.includes(cur)?'0':'';
-  v.scrollTop=0;inp.value=cur;sv('qp',cur);sv('qy',y>0?y:0);draw();
-  if(img.complete&&img.naturalWidth)requestAnimationFrame(()=>{draw();applyY()});
-  if(cur<N)new Image().src=src(cur+1);
-  if(cur>1)new Image().src=src(cur-1);
+  cur=Math.max(1,Math.min(N,i|0||1));const p=sheets[cur];
+  v.scrollTop=Math.max(0,p.offsetTop+(y>0?y*p.offsetHeight-2:-8));
+  inp.value=cur;savePos();draw();
+}
+let raf=0;
+function track(){
+  raf=0;const y=v.scrollTop+v.clientHeight*.3;let c=cur;
+  while(c<N&&sheets[c+1].offsetTop<=y)c++;while(c>1&&sheets[c].offsetTop>y)c--;
+  if(c!==cur){cur=c;inp.value=c;draw()}
 }
 inp.onchange=()=>show(+inp.value);
 inp.onfocus=()=>inp.select();
 $('prev').onclick=()=>show(cur-1);
 $('next').onclick=()=>show(cur+1);
-$('ft').onclick=()=>{fit=fit==='w'?'h':'w';v.className=fit==='h'?'fh':'fw';sv('qf',fit);v.scrollTop=0;toast(t(fit==='w'?'fit_w':'fit_h'))};
+$('ft').onclick=()=>{const [fp,fy]=at();fit=fit==='w'?'h':'w';v.className=fit==='h'?'fh':'fw';sv('qf',fit);show(fp,fy);toast(t(fit==='w'?'fit_w':'fit_h'))};
 addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowLeft'||e.key==='PageDown')show(cur+1);if(e.key==='ArrowRight'||e.key==='PageUp')show(cur-1)});
 // Панель скрыта: двойное касание левого верхнего угла показывает её, прокрутка страницы скрывает
 function showBar(){bar.classList.remove('h')}
@@ -216,48 +227,30 @@ v.addEventListener('pointerup',e=>{
 v.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>2)hideBar()},{passive:true});
 v.addEventListener('touchstart',e=>{ty=e.touches.length===1?e.touches[0].clientY:null},{passive:true});
 v.addEventListener('touchmove',e=>{if(ty!==null&&Math.abs(e.touches[0].clientY-ty)>10){ty=null;hideBar()}},{passive:true});
-// Прокрутка у края страницы сразу переходит на соседнюю страницу (без остановки)
-let lockUntil=0,gest={acc:0},lastTY=0;
-function edgeAt(dir){const max=v.scrollHeight-v.clientHeight;return dir>0?v.scrollTop>=max-2:v.scrollTop<=1}
-function turnPage(dir){
-  if(dir>0&&cur<N)show(cur+1);else if(dir<0&&cur>1)show(cur-1,1);
-}
-function pushed(dir){
-  if(Date.now()<lockUntil||!edgeAt(dir))return;
-  lockUntil=Date.now()+800;turnPage(dir);
-}
-v.addEventListener('wheel',e=>{
-  if(Math.abs(e.deltaY)<2||e.ctrlKey)return;
-  pushed(e.deltaY>0?1:-1);
-},{passive:true});
-v.addEventListener('touchstart',e=>{if(e.touches.length===1){lastTY=e.touches[0].clientY;gest.acc=0}},{passive:true});
-v.addEventListener('touchmove',e=>{
-  if(e.touches.length!==1)return;const y=e.touches[0].clientY,d=lastTY-y;lastTY=y;
-  if(d!==0&&gest.acc*d<0)gest.acc=0;gest.acc+=d;if(Math.abs(gest.acc)>=30)pushed(gest.acc>0?1:-1);
-},{passive:true});
 function open(node){pn.classList.remove('wide');pn.innerHTML='';pn.appendChild(node);sh.classList.add('on')}
 function close(){sh.classList.remove('on')}
 sh.addEventListener('click',e=>{if(e.target===sh)close()});
 function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
 function saveMarks(){sv('qbm',JSON.stringify(marks))}
 mk.onclick=()=>{
-  const m=marks[cur];let sel=m?m.c:0;
-  const w=el('div');w.appendChild(el('h3',null,t('mark_title',{n:cur})));
+  const [mp,my]=at();
+  const m=marks[mp];let sel=m?m.c:0;
+  const w=el('div');w.appendChild(el('h3',null,t('mark_title',{n:mp})));
   const sw=el('div','sw');
   COL.forEach((c,i)=>{const d=el('i',i===sel?'s':'');d.style.background=c;d.onclick=()=>{sel=i;[...sw.children].forEach((x,j)=>x.classList.toggle('s',j===i))};sw.appendChild(d)});
   w.appendChild(sw);
   const ti=el('input');ti.type='text';ti.placeholder=t('comment_ph');ti.maxLength=80;ti.value=m?m.t:'';w.appendChild(ti);
   const r=el('div','row');
-  const ok=el('button','b',t('save'));ok.onclick=()=>{marks[cur]={c:sel,t:ti.value.trim(),y:+curY().toFixed(4)};saveMarks();draw();close();toast(t('saved'))};
+  const ok=el('button','b',t('save'));ok.onclick=()=>{marks[mp]={c:sel,t:ti.value.trim(),y:+my.toFixed(4)};saveMarks();drawRibs();draw();close();toast(t('saved'))};
   r.appendChild(ok);
-  if(m){const del=el('button','b',t('del'));del.onclick=()=>{delete marks[cur];saveMarks();draw();close();toast(t('deleted'))};r.appendChild(del)}
+  if(m){const del=el('button','b',t('del'));del.onclick=()=>{delete marks[mp];saveMarks();drawRibs();draw();close();toast(t('deleted'))};r.appendChild(del)}
   const cn=el('button','b',t('close'));cn.onclick=close;r.appendChild(cn);
   w.appendChild(r);
   const ks=Object.keys(marks).map(Number).sort((a,b)=>a-b);
   w.appendChild(el('div','sub',t('my_marks')+(ks.length?' · '+ks.length:'')));
   const lst=el('div','sl');
   if(!ks.length)lst.appendChild(el('div','em',t('no_marks')));
-  ks.forEach(p=>{const mm=marks[p],row=el('div','li'+(p===cur?' cu':''));const i=el('i');i.style.background=COL[mm.c];row.appendChild(i);row.appendChild(el('b',null,t('page',{n:p})));row.appendChild(el('span',null,mm.t||''));row.onclick=()=>{close();show(p,mm.y)};lst.appendChild(row)});
+  ks.forEach(p=>{const mm=marks[p],row=el('div','li'+(p===mp?' cu':''));const i=el('i');i.style.background=COL[mm.c];row.appendChild(i);row.appendChild(el('b',null,t('page',{n:p})));row.appendChild(el('span',null,mm.t||''));row.onclick=()=>{close();show(p,mm.y)};lst.appendChild(row)});
   w.appendChild(lst);open(w);
 };
 const norm=s=>s.toLowerCase().replace(/['’ʼ‘`ʻ]/g,'').replace(/ё/g,'е').replace(/ў/g,'у').replace(/қ/g,'к').replace(/ғ/g,'г').replace(/ҳ/g,'х').replace(/ъ/g,'');
@@ -291,13 +284,13 @@ $('lg').onclick=()=>{
 };
 // ===== Справка (первый запуск и кнопка «?») =====
 const H={
- ru:{edge_next:'Прокрутите ещё раз — следующая страница',edge_prev:'Прокрутите ещё раз — предыдущая страница',use_scroll:'Прокрутка: дойдя до конца (начала) страницы, продолжайте прокручивать — сразу откроется следующая (предыдущая) страница.',help_title:'Как пользоваться',inst_title:'Установка на телефон',inst_android:'Android: откройте сайт в браузере Chrome → меню ⋮ (три точки) → «Установить приложение» или «Добавить на главный экран».',inst_ios:'iPhone: откройте сайт в Safari → кнопка «Поделиться» (квадрат со стрелкой) → «На экран «Домой»» → «Добавить».',inst_browser:'Важно: на Android используйте Chrome, на iPhone — Safari.',use_title:'Управление',
+ ru:{edge_next:'Прокрутите ещё раз — следующая страница',edge_prev:'Прокрутите ещё раз — предыдущая страница',use_scroll:'Прокрутка: страницы идут непрерывной лентой — листайте вверх и вниз, следующая страница продолжается сама, без остановок.',help_title:'Как пользоваться',inst_title:'Установка на телефон',inst_android:'Android: откройте сайт в браузере Chrome → меню ⋮ (три точки) → «Установить приложение» или «Добавить на главный экран».',inst_ios:'iPhone: откройте сайт в Safari → кнопка «Поделиться» (квадрат со стрелкой) → «На экран «Домой»» → «Добавить».',inst_browser:'Важно: на Android используйте Chrome, на iPhone — Safari.',use_title:'Управление',
   use_swipe:'Кнопки в панели: левая ‹ — следующая страница, правая › — предыдущая (Коран читается справа налево).',use_panel:'Панель: дважды коснитесь левого верхнего угла — панель появится; при прокрутке страницы она исчезнет.',use_mark:'Метка (закладка): кнопка с закладкой ставит метку там, где вы остановились; можно выбрать цвет и написать комментарий (например, имя суры). Ниже — список всех меток, нажатие переносит к месту.',use_surah:'Суры: кнопка справа с названием суры открывает список; введите 1–3 буквы или номер для поиска.',use_lang:'Язык: кнопка с глобусом — узбекский (лотин/кирилл), русский, английский. Кнопка ⤢ — масштаб страницы.',use_save:'Приложение запоминает страницу и место, где вы остановились, и открывает книгу там же.',use_upd:'Обновления: слева в панели видна версия; когда выходит новая, появляется «↻ Есть обновление» — нажмите.',got_it:'Понятно',help_tip:'Справка'},
- uzl:{edge_next:"Yana suring — keyingi bet",edge_prev:"Yana suring — oldingi bet",use_scroll:"Aylantirish: sahifa oxiriga (boshiga) yetgach, surishni davom ettiring — darhol keyingi (oldingi) bet ochiladi.",help_title:"Qo'llanma",inst_title:"Telefonga o'rnatish",inst_android:"Android: saytni Chrome brauzerida oching → ⋮ menyusi (uch nuqta) → «Ilovani o'rnatish» yoki «Bosh ekranga qo'shish».",inst_ios:"iPhone: saytni Safari'da oching → «Ulashish» tugmasi (o'qli kvadrat) → «Bosh ekranga qo'shish» → «Qo'shish».",inst_browser:"Muhim: Android'da Chrome, iPhone'da Safari'dan foydalaning.",use_title:"Boshqaruv",
+ uzl:{edge_next:"Yana suring — keyingi bet",edge_prev:"Yana suring — oldingi bet",use_scroll:"Aylantirish: sahifalar uzluksiz tasma bo'lib keladi — yuqori va pastga suring, keyingi bet to'xtamasdan davom etadi.",help_title:"Qo'llanma",inst_title:"Telefonga o'rnatish",inst_android:"Android: saytni Chrome brauzerida oching → ⋮ menyusi (uch nuqta) → «Ilovani o'rnatish» yoki «Bosh ekranga qo'shish».",inst_ios:"iPhone: saytni Safari'da oching → «Ulashish» tugmasi (o'qli kvadrat) → «Bosh ekranga qo'shish» → «Qo'shish».",inst_browser:"Muhim: Android'da Chrome, iPhone'da Safari'dan foydalaning.",use_title:"Boshqaruv",
   use_swipe:"Panel tugmalari: chap ‹ — keyingi bet, o'ng › — oldingi bet (Qur'on o'ngdan chapga o'qiladi).",use_panel:"Panel: chap yuqori burchakka ikki marta teging — panel chiqadi; sahifa aylantirilganda yo'qoladi.",use_mark:"Belgi (xatcho'p): xatcho'p tugmasi to'xtagan joyingizga belgi qo'yadi; rang tanlab, izoh yozish mumkin (masalan, sura nomi). Pastda barcha belgilar ro'yxati, bosilsa o'sha joyga o'tadi.",use_surah:"Suralar: o'ngdagi sura nomi tugmasi ro'yxatni ochadi; qidirish uchun 1–3 harf yoki raqam kiriting.",use_lang:"Til: globus tugmasi — o'zbekcha (lotin/kirill), ruscha, inglizcha. ⤢ tugmasi — sahifa masshtabi.",use_save:"Ilova to'xtagan bet va joyingizni eslab qoladi va kitobni o'sha yerdan ochadi.",use_upd:"Yangilanishlar: panelning chap tomonida versiya ko'rinadi; yangisi chiqsa «↻ Yangilanish bor» paydo bo'ladi — bosing.",got_it:"Tushunarli",help_tip:"Qo'llanma"},
- uzc:{edge_next:'Яна суринг — кейинги бет',edge_prev:'Яна суринг — олдинги бет',use_scroll:'Айлантириш: саҳифа охирига (бошига) етгач, суришни давом эттиринг — дарҳол кейинги (олдинги) бет очилади.',help_title:'Қўлланма',inst_title:'Телефонга ўрнатиш',inst_android:'Android: сайтни Chrome браузерида очинг → ⋮ меню (уч нуқта) → «Иловани ўрнатиш» ёки «Бош экранга қўшиш».',inst_ios:'iPhone: сайтни Safari’да очинг → «Улашиш» тугмаси (ўқли квадрат) → «Бош экранга қўшиш» → «Қўшиш».',inst_browser:'Муҳим: Android’да Chrome, iPhone’да Safari’дан фойдаланинг.',use_title:'Бошқарув',
+ uzc:{edge_next:'Яна суринг — кейинги бет',edge_prev:'Яна суринг — олдинги бет',use_scroll:'Айлантириш: саҳифалар узлуксиз тасма бўлиб келади — юқори ва пастга суринг, кейинги бет тўхтамасдан давом этади.',help_title:'Қўлланма',inst_title:'Телефонга ўрнатиш',inst_android:'Android: сайтни Chrome браузерида очинг → ⋮ меню (уч нуқта) → «Иловани ўрнатиш» ёки «Бош экранга қўшиш».',inst_ios:'iPhone: сайтни Safari’да очинг → «Улашиш» тугмаси (ўқли квадрат) → «Бош экранга қўшиш» → «Қўшиш».',inst_browser:'Муҳим: Android’да Chrome, iPhone’да Safari’дан фойдаланинг.',use_title:'Бошқарув',
   use_swipe:'Панель тугмалари: чап ‹ — кейинги бет, ўнг › — олдинги бет (Қуръон ўнгдан чапга ўқилади).',use_panel:'Панель: чап юқори бурчакка икки марта тегинг — панель чиқади; саҳифа айлантирилганда йўқолади.',use_mark:'Белги (хатчўп): хатчўп тугмаси тўхтаган жойингизга белги қўяди; ранг танлаб, изоҳ ёзиш мумкин (масалан, сура номи). Пастда барча белгилар рўйхати, босилса ўша жойга ўтади.',use_surah:'Суралар: ўнгдаги сура номи тугмаси рўйхатни очади; қидириш учун 1–3 ҳарф ёки рақам киритинг.',use_lang:'Тил: глобус тугмаси — ўзбекча (лотин/кирилл), русча, инглизча. ⤢ тугмаси — саҳифа масштаби.',use_save:'Илова тўхтаган бет ва жойингизни эслаб қолади ва китобни ўша ердан очади.',use_upd:'Янгиланишлар: панелнинг чап томонида версия кўринади; янгиси чиқса «↻ Янгиланиш бор» пайдо бўлади — босинг.',got_it:'Тушунарли',help_tip:'Қўлланма'},
- en:{edge_next:'Scroll again — next page',edge_prev:'Scroll again — previous page',use_scroll:'Scrolling: when you reach the end (start) of a page, keep scrolling — the next (previous) page opens right away.',help_title:'How to use',inst_title:'Install on your phone',inst_android:'Android: open the site in Chrome → ⋮ menu (three dots) → “Install app” or “Add to Home screen”.',inst_ios:'iPhone: open the site in Safari → Share button (square with arrow) → “Add to Home Screen” → “Add”.',inst_browser:'Important: use Chrome on Android and Safari on iPhone.',use_title:'Controls',
+ en:{edge_next:'Scroll again — next page',edge_prev:'Scroll again — previous page',use_scroll:'Scrolling: the pages run as one continuous strip — just scroll up and down, the next page continues on its own without stopping.',help_title:'How to use',inst_title:'Install on your phone',inst_android:'Android: open the site in Chrome → ⋮ menu (three dots) → “Install app” or “Add to Home screen”.',inst_ios:'iPhone: open the site in Safari → Share button (square with arrow) → “Add to Home Screen” → “Add”.',inst_browser:'Important: use Chrome on Android and Safari on iPhone.',use_title:'Controls',
   use_swipe:'Panel buttons: left ‹ — next page, right › — previous page (the Quran is read right to left).',use_panel:'Panel: double-tap the top-left corner to show it; it hides when you scroll.',use_mark:'Bookmarks: the bookmark button marks the place where you stopped; pick a colour and add a note (e.g. a surah name). The list below opens any bookmark.',use_surah:'Surahs: the button on the right opens the list; type 1–3 letters or a number to search.',use_lang:'Language: the globe button — Uzbek (Latin/Cyrillic), Russian, English. The ⤢ button changes page scale.',use_save:'The app remembers the page and the spot where you stopped and reopens the book there.',use_upd:'Updates: the version is shown at the left of the panel; when a new one is out, “↻ Update available” appears — tap it.',got_it:'Got it',help_tip:'Help'}
 };
 for(const l in H)Object.assign(T[l],H[l]);
@@ -326,8 +319,9 @@ function openHelp(){
 }
 $('hp').onclick=openHelp;
 const s0=+lg('qp',1)||1;show(s0,+lg('qy',0));
-let sT;v.addEventListener('scroll',()=>{clearTimeout(sT);sT=setTimeout(()=>sv('qy',curY().toFixed(4)),250)},{passive:true});
-if(window.ResizeObserver)new ResizeObserver(()=>draw()).observe(sheet);
+drawRibs();
+let sT,rT;v.addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(track);clearTimeout(sT);sT=setTimeout(savePos,250)},{passive:true});
+addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(()=>show(lastAt[0],lastAt[1]),150)});
 if(!lg('qhelp',''))setTimeout(openHelp,600);if(s0>1)toast(t('resume',{n:s0}));
 let newer=false,busy=false;
 function drawVer(){const b=$('ver');b.className=newer?'new':'';b.disabled=busy;b.textContent=busy?t('updating'):newer?t('update'):'v'+VER}
@@ -345,7 +339,7 @@ async function checkVer(){
 $('ver').onclick=async()=>{if(newer)return hardRefresh();await checkVer();toast(newer?t('update_toast'):t('latest',{v:VER}))};
 drawVer();checkVer();setLang(lang);setInterval(checkVer,5*60e3);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkVer()});
-addEventListener('pagehide',()=>sv('qp',cur));
+addEventListener('pagehide',savePos);
 if('serviceWorker'in navigator&&!NATIVE)navigator.serviceWorker.register('sw.js?i='+IMGV).catch(()=>{});
 </script>
 </body>
