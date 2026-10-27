@@ -9,22 +9,26 @@
 <meta name="theme-color" content="#244a33">
 <title>Vaqfli Qur'on</title>
 <style>
-:root{--c0:#0d2016;--c1:#173626;--c2:#3b2a21;--c3:#4f372b;--edge:rgba(227,203,133,.34);--car:#e3cb85;--car2:#b8844f;--cream:#f4e8d6;--tx:#e4efe1;--mut:#a9c4ae;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+/* темы: зелёная (по умолчанию) и синяя */
+:root{--t1:#0d2016;--t2:#173626;--t3:#e4efe1;--t4:#a9c4ae;--t5:#2c5a40;--t6:#447b59;--t7:#2c5640;--t8:#4f8a63;--t9:#0f2a1c;--t10:#2f6046;--t11:#1a3d2b;--t12:#336247;--t13:#244a33;--t14:#1a3a29;--t15:#0f2418;--t16:#1b3a28;--t17:#bcd3bf;--t18:220,255,225;--t19:4,12,6;--t20:5,16,10;--t21:14,38,26;--t22:8,26,16;--frame:url(frame4.jpg)}
+:root[data-theme=blue]{--t1:#040d29;--t2:#071746;--t3:#e0e4f0;--t4:#a8afc5;--t5:#0f2977;--t6:#16348e;--t7:#102872;--t8:#1a3ca0;--t9:#031036;--t10:#102c7f;--t11:#081a4f;--t12:#122e83;--t13:#0c2262;--t14:#08194c;--t15:#040f2f;--t16:#091a4c;--t17:#bbc1d4;--t18:230,234,245;--t19:1,4,15;--t20:1,6,20;--t21:3,15,49;--t22:2,10,32;--frame:url(frame4b.jpg)}
+
+:root{--c0:var(--t1);--c1:var(--t2);--c2:#3b2a21;--c3:#4f372b;--edge:rgba(227,203,133,.34);--car:#e3cb85;--car2:#b8844f;--cream:#f4e8d6;--tx:var(--t3);--mut:var(--t4);--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
 *{box-sizing:border-box}
 html,body{overscroll-behavior:none;margin:0;height:100%;color:var(--tx);font-family:var(--serif);overflow:hidden;-webkit-tap-highlight-color:transparent;
- background:radial-gradient(ellipse 120% 80% at 50% 0%,#2c5a40 0%,#173626 55%,#0d2016 100%) fixed}
+ background:radial-gradient(ellipse 120% 80% at 50% 0%,var(--t5) 0%,var(--t2) 55%,var(--t1) 100%) fixed}
 svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 #bar{position:fixed;top:0;left:0;right:0;min-height:32px;z-index:5;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:4px 8px;padding:3px 8px;
  background:linear-gradient(180deg,#54392d 0%,#3a281f 55%,#2e2019 100%);border-bottom:1px solid var(--edge);
- box-shadow:inset 0 1px 0 rgba(220,255,225,.14),0 8px 22px rgba(4,12,6,.55);transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s ease}
+ box-shadow:inset 0 1px 0 rgba(var(--t18),.14),0 8px 22px rgba(var(--t19),.55);transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s ease}
 #bar.h{transform:translateY(-115%);opacity:0;pointer-events:none}
 #mid{display:flex;align-items:center;gap:8px}
 .b{height:26px;min-width:26px;padding:0 9px;border-radius:13px;border:1px solid var(--edge);color:var(--cream);font-size:12.5px;font-family:var(--serif);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;
- background:linear-gradient(180deg,#447b59,#2c5640);box-shadow:inset 0 1px 0 rgba(220,255,225,.2),0 2px 6px rgba(4,12,6,.45);transition:transform .08s,filter .15s}
-.b:hover{filter:brightness(1.12)}.b:active{transform:translateY(1px);filter:brightness(1.25);box-shadow:inset 0 2px 4px rgba(4,12,6,.5)}
+ background:linear-gradient(180deg,var(--t6),var(--t7));box-shadow:inset 0 1px 0 rgba(var(--t18),.2),0 2px 6px rgba(var(--t19),.45);transition:transform .08s,filter .15s}
+.b:hover{filter:brightness(1.12)}.b:active{transform:translateY(1px);filter:brightness(1.25);box-shadow:inset 0 2px 4px rgba(var(--t19),.5)}
 .b:disabled{opacity:.6}
 .cell{display:flex;align-items:center;gap:5px;height:25px;padding:0 9px 0 3px;border-radius:13px;border:1px solid var(--edge);
- background:linear-gradient(180deg,#1f140e,#2c1d16);box-shadow:inset 0 2px 5px rgba(0,0,0,.55),0 1px 0 rgba(220,255,225,.12);font-size:13px;color:var(--car);letter-spacing:.3px}
+ background:linear-gradient(180deg,#1f140e,#2c1d16);box-shadow:inset 0 2px 5px rgba(0,0,0,.55),0 1px 0 rgba(var(--t18),.12);font-size:13px;color:var(--car);letter-spacing:.3px}
 .cell input{width:38px;height:19px;border:0;border-radius:10px;background:linear-gradient(180deg,#fbf2e3,#ead9bf);color:#3a2820;text-align:center;font-size:12.5px;font-weight:bold;font-family:var(--serif);box-shadow:0 1px 3px rgba(0,0,0,.4);-moz-appearance:textfield}
 .cell input:focus{outline:2px solid var(--car);outline-offset:1px}
 .cell input::-webkit-outer-spin-button,.cell input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
@@ -32,9 +36,9 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
 #cm{max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px;font-weight:bold;font-style:normal;padding:0 10px;height:23px;line-height:21px;border-radius:15px;border:1px solid var(--edge);color:var(--car);background:rgba(227,203,133,.1)}
 #sr{justify-self:end;max-width:min(250px,32vw);overflow:hidden;color:var(--car);font-size:13px;font-weight:bold}
 #sr span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#v{touch-action:pan-y pinch-zoom;overscroll-behavior:contain;position:absolute;top:var(--bh,34px);bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px 10px 30px;scrollbar-color:#4f8a63 #0f2a1c}
-#v::-webkit-scrollbar{width:10px}#v::-webkit-scrollbar-track{background:#0f2a1c}#v::-webkit-scrollbar-thumb{background:#4f8a63;border-radius:6px;border:2px solid #0f2a1c}
-.sheet{position:relative;width:min(100%,1000px);aspect-ratio:1640/2296.04;margin:0 auto 6px;background:#fff url(frame4.jpg) center/106% 103% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
+#v{touch-action:pan-y pinch-zoom;overscroll-behavior:contain;position:absolute;top:var(--bh,34px);bottom:0;left:0;right:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px 10px 30px;scrollbar-color:var(--t8) var(--t9)}
+#v::-webkit-scrollbar{width:10px}#v::-webkit-scrollbar-track{background:var(--t9)}#v::-webkit-scrollbar-thumb{background:var(--t8);border-radius:6px;border:2px solid var(--t9)}
+.sheet{position:relative;width:min(100%,1000px);aspect-ratio:1640/2296.04;margin:0 auto 6px;background:#fff var(--frame) center/106% 103% no-repeat;line-height:0;border-radius:5px;overflow:hidden;
  box-shadow:0 0 0 1px rgba(227,203,133,.28),0 14px 40px rgba(8,3,1,.65),0 3px 8px rgba(8,3,1,.5)}
 .sheet.nc{aspect-ratio:1640/2360}
 #v.fh .sheet{width:min(100%,calc((100vh - var(--bh,34px) - 40px) * .7143));width:min(100%,calc((100dvh - var(--bh,34px) - 40px) * .7143))}
@@ -42,10 +46,10 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .sheet.nc img{margin-top:0}
 .sheet img.l{opacity:1}
 .rib{position:absolute;top:0;right:32px;width:21px;height:42px;background-size:contain;background-repeat:no-repeat;pointer-events:none;display:none;z-index:2}
-#sh{position:fixed;inset:0;background:rgba(5,16,10,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:10;display:none;align-items:center;justify-content:center;padding:12px}
+#sh{position:fixed;inset:0;background:rgba(var(--t20),.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:10;display:none;align-items:center;justify-content:center;padding:12px}
 #sh.on{display:flex}
-.pn{width:min(320px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#2f6046,#1a3d2b);border:1px solid var(--edge);border-radius:16px;padding:9px 11px 9px;
- box-shadow:inset 0 1px 0 rgba(220,255,225,.14),0 20px 60px rgba(5,2,0,.75)}
+.pn{width:min(320px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,var(--t10),var(--t11));border:1px solid var(--edge);border-radius:16px;padding:9px 11px 9px;
+ box-shadow:inset 0 1px 0 rgba(var(--t18),.14),0 20px 60px rgba(5,2,0,.75)}
 .pn h3{margin:0 0 4px;text-align:center;font-weight:normal;font-size:14px;letter-spacing:.8px;color:var(--car)}
 .pn h3::after{content:"";display:block;width:56px;height:2px;margin:5px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,var(--car),transparent)}
 .sw{display:flex;justify-content:center;gap:9px;margin:4px 0 7px}
@@ -64,32 +68,32 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
 .su .pg{flex:none;color:var(--mut);font-size:10.5px}
 .pn>div{display:flex;flex-direction:column;flex:1;min-height:0;overflow:auto}
 .sl{flex:1 1 auto;min-height:0;overflow:auto;padding-right:2px}
-.sl,.pn>div{scrollbar-width:thin;scrollbar-color:#4f8a63 transparent}
-.sl::-webkit-scrollbar,.pn>div::-webkit-scrollbar{width:8px}.sl::-webkit-scrollbar-thumb,.pn>div::-webkit-scrollbar-thumb{background:#4f8a63;border-radius:6px}.sl::-webkit-scrollbar-track,.pn>div::-webkit-scrollbar-track{background:transparent}
+.sl,.pn>div{scrollbar-width:thin;scrollbar-color:var(--t8) transparent}
+.sl::-webkit-scrollbar,.pn>div::-webkit-scrollbar{width:8px}.sl::-webkit-scrollbar-thumb,.pn>div::-webkit-scrollbar-thumb{background:var(--t8);border-radius:6px}.sl::-webkit-scrollbar-track,.pn>div::-webkit-scrollbar-track{background:transparent}
 .pn h3,.sq,.row{flex:none}
 .pn>div>*{flex:none}.pn>div>.sl{flex:1 1 auto}
 .pn .b{height:25px;padding:0 10px;font-size:12.5px}
 .pn input[type=text]{height:29px;font-size:13px;padding:0 13px}
 .sub{margin:7px 0 2px;padding-top:5px;border-top:1px solid rgba(227,203,133,.22);text-align:center;color:var(--mut);font-size:10px;letter-spacing:.7px;text-transform:uppercase}
 .em{text-align:center;color:var(--mut);padding:16px;font-style:italic}
-#t{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(14,38,26,.94);color:var(--cream);border:1px solid var(--edge);padding:9px 18px;border-radius:20px;z-index:12;opacity:0;transition:opacity .3s;pointer-events:none;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
-#ver{justify-self:start;align-self:center;font-size:10.5px;line-height:1;border-radius:10px;padding:4px 8px;border:1px solid var(--edge);background:rgba(14,38,26,.6);color:var(--mut);font-family:var(--serif);opacity:.8;cursor:pointer;white-space:nowrap}
+#t{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(var(--t21),.94);color:var(--cream);border:1px solid var(--edge);padding:9px 18px;border-radius:20px;z-index:12;opacity:0;transition:opacity .3s;pointer-events:none;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+#ver{justify-self:start;align-self:center;font-size:10.5px;line-height:1;border-radius:10px;padding:4px 8px;border:1px solid var(--edge);background:rgba(var(--t21),.6);color:var(--mut);font-family:var(--serif);opacity:.8;cursor:pointer;white-space:nowrap}
 #ver.new{opacity:1;background:linear-gradient(180deg,#e6bf91,#bd8750);color:#2a1a10;border-color:rgba(255,255,255,.65);font-size:11px;font-weight:bold;padding:5px 9px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
 @media (max-width:860px){#ls span{display:none}}
 @media (max-width:720px){#bar{grid-template-columns:1fr}#ver{position:absolute;top:3px;left:6px}#ver.new{position:static;justify-self:start}#mid{flex-wrap:wrap;justify-content:center;gap:7px}#cm{flex-basis:100%;max-width:100%;text-align:center}#sr{justify-self:center;max-width:100%}.cell{padding:0 10px 0 5px;gap:5px}.cell input{width:48px}.b{padding:0 10px}}
 /* зелёная верхняя панель */
-#bar{--edge:rgba(214,205,150,.4);--car:#e3cb85;background:linear-gradient(180deg,#336247 0%,#244a33 55%,#1a3a29 100%);box-shadow:inset 0 1px 0 rgba(220,255,225,.18),0 8px 22px rgba(4,12,6,.55)}
-#bar .b{background:linear-gradient(180deg,#447b59,#2c5640);box-shadow:inset 0 1px 0 rgba(220,255,225,.22),0 2px 6px rgba(4,12,6,.45)}
-#bar .cell{background:linear-gradient(180deg,#0f2418,#1b3a28);box-shadow:inset 0 2px 5px rgba(0,0,0,.55),0 1px 0 rgba(220,255,225,.14)}
+#bar{--edge:rgba(214,205,150,.4);--car:#e3cb85;background:linear-gradient(180deg,var(--t12) 0%,var(--t13) 55%,var(--t14) 100%);box-shadow:inset 0 1px 0 rgba(var(--t18),.18),0 8px 22px rgba(var(--t19),.55)}
+#bar .b{background:linear-gradient(180deg,var(--t6),var(--t7));box-shadow:inset 0 1px 0 rgba(var(--t18),.22),0 2px 6px rgba(var(--t19),.45)}
+#bar .cell{background:linear-gradient(180deg,var(--t15),var(--t16));box-shadow:inset 0 2px 5px rgba(0,0,0,.55),0 1px 0 rgba(var(--t18),.14)}
 #bar #cm{background:rgba(227,203,133,.12)}
-#bar #ver{background:rgba(8,26,16,.55);color:#bcd3bf}
+#bar #ver{background:rgba(var(--t22),.55);color:var(--t17)}
 #bar #ver.new{background:linear-gradient(180deg,#f0d9a0,#c9a24f);color:#2a2410}
-#hp{position:fixed;right:10px;bottom:10px;z-index:9;width:30px;height:30px;border-radius:50%;border:1px solid var(--edge);background:linear-gradient(180deg,#447b59,#2c5640);color:var(--cream);font:bold 16px var(--serif);cursor:pointer;opacity:.6;box-shadow:0 2px 8px rgba(4,12,6,.5)}
+#hp{position:fixed;right:10px;bottom:10px;z-index:9;width:30px;height:30px;border-radius:50%;border:1px solid var(--edge);background:linear-gradient(180deg,var(--t6),var(--t7));color:var(--cream);font:bold 16px var(--serif);cursor:pointer;opacity:.6;box-shadow:0 2px 8px rgba(var(--t19),.5)}
 #hp:active{opacity:1}
 .pn.wide{width:min(430px,100%)}
 .lrow{display:flex;gap:6px;justify-content:center;margin:2px 0 6px}
 .lrow .b.on{background:linear-gradient(180deg,#f0d9a0,#c9a24f);color:#2a2410;border-color:rgba(255,255,255,.6)}
-.pn>div>.hp{flex:1 1 auto;min-height:0;overflow:auto;padding-right:3px;scrollbar-width:thin;scrollbar-color:#4f8a63 transparent}
+.pn>div>.hp{flex:1 1 auto;min-height:0;overflow:auto;padding-right:3px;scrollbar-width:thin;scrollbar-color:var(--t8) transparent}
 .hp h4{margin:8px 0 3px;color:var(--car);font-weight:normal;font-size:12px;letter-spacing:.5px;text-transform:uppercase}
 .hp p{margin:0 0 5px;font-size:12.5px;line-height:1.4;color:var(--tx)}
 .hp p.hl{background:rgba(227,203,133,.16);border-radius:8px;padding:4px 7px}
@@ -106,6 +110,7 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
   <button class="b" id="mk" aria-label="Метка"><svg class="i" viewBox="0 0 24 24"><path d="M7 3h10v18l-5-4-5 4z"/></svg></button>
   <div id="cm" hidden></div>
   <button class="b" id="lg" title="Til / Тил / Язык / Language"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span id="lgc"></span></button>
+  <button class="b" id="th" aria-label="Тема"><svg class="i" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.400 0 2-1 1.500-2-.6-1.200.2-2.500 1.600-2.500H17a4 4 0 0 0 4-4C21 6.500 17 3 12 3z"/><circle cx="7.500" cy="11" r="1"/><circle cx="10.500" cy="7" r="1"/><circle cx="15" cy="7.500" r="1"/></svg></button>
   <button class="b" id="ft" title="Масштаб" aria-label="Масштаб"><svg class="i" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
  </div>
  <button class="b" id="sr" title="Суры"><svg class="i" viewBox="0 0 24 24"><path d="M3 5c3-1.2 6-1 9 1 3-2 6-2.200 9-1v13c-3-1.200-6-1-9 1-3-2-6-2.200-9-1z"/><path d="M12 6v13"/></svg><span id="srt"></span></button>
@@ -115,7 +120,7 @@ svg.i{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke
 <div id="t"></div>
 <button id="hp" type="button">?</button>
 <script>
-const VER='4.1',IMGV=3;
+const VER='4.2',IMGV=3;
 const NATIVE=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
 const SITE='https://zairxon.github.io/quran-vaqfli/',APK_URL='https://github.com/Zairxon/quran-vaqfli/releases/download/latest/quran.apk';
 const N=604,$=id=>document.getElementById(id);
@@ -134,7 +139,10 @@ const lg=(k,d)=>{try{const x=localStorage.getItem(k);return x===null?d:x}catch(e
 const sv=(k,x)=>{try{localStorage.setItem(k,x)}catch(e){}};
 try{marks=JSON.parse(lg('qbm','{}'))||{}}catch(e){marks={}}
 const old=+lg('qm',0);if(old&&!marks[old]){marks[old]={c:0,t:''};sv('qbm',JSON.stringify(marks))}
-fit=lg('qf','w');v.className=fit==='h'?'fh':'fw';
+fit=lg('qf','w');
+let theme=lg('qth','green')==='blue'?'blue':'green';
+function setTheme(x){theme=x;document.documentElement.dataset.theme=x==='blue'?'blue':'';sv('qth',x);const m=document.querySelector('meta[name=theme-color]');if(m)m.content=x==='blue'?'#0c2262':'#244a33'}
+setTheme(theme);v.className=fit==='h'?'fh':'fw';
 const REST=new Set([3,4,5,9,11,13,14,18,26,27,37,38,40,52,53,54,78,84,101,104,108,123,125,134,135,138,139,142,143,146,160,161,169,178,180,182,192,193,194,197,200,210,211,219,222,231,239,244,251,257,265,270,280,281,284,285,296,298,308,317,318,324,328,330,333,344,355,359,360,366,379,381,382,390,397,398,399,400,406,408,413,422,426,432,434,436,438,454,456,459,464,468,471,475,480,485,488,491,500,501,505,506,512,513,517,541,544,545,547,551,552,555,559,576,599]);
 // ===== Языки: uzl — узбекский (латиница), uzc — узбекский (кириллица), ru — русский, en — английский =====
 const EN="Al-Fatihah|Al-Baqarah|Ali 'Imran|An-Nisa|Al-Ma'idah|Al-An'am|Al-A'raf|Al-Anfal|At-Tawbah|Yunus|Hud|Yusuf|Ar-Ra'd|Ibrahim|Al-Hijr|An-Nahl|Al-Isra|Al-Kahf|Maryam|Ta-Ha|Al-Anbiya|Al-Hajj|Al-Mu'minun|An-Nur|Al-Furqan|Ash-Shu'ara|An-Naml|Al-Qasas|Al-Ankabut|Ar-Rum|Luqman|As-Sajdah|Al-Ahzab|Saba|Fatir|Ya-Sin|As-Saffat|Sad|Az-Zumar|Ghafir|Fussilat|Ash-Shura|Az-Zukhruf|Ad-Dukhan|Al-Jathiyah|Al-Ahqaf|Muhammad|Al-Fath|Al-Hujurat|Qaf|Adh-Dhariyat|At-Tur|An-Najm|Al-Qamar|Ar-Rahman|Al-Waqi'ah|Al-Hadid|Al-Mujadila|Al-Hashr|Al-Mumtahanah|As-Saff|Al-Jumu'ah|Al-Munafiqun|At-Taghabun|At-Talaq|At-Tahrim|Al-Mulk|Al-Qalam|Al-Haqqah|Al-Ma'arij|Nuh|Al-Jinn|Al-Muzzammil|Al-Muddaththir|Al-Qiyamah|Al-Insan|Al-Mursalat|An-Naba|An-Nazi'at|'Abasa|At-Takwir|Al-Infitar|Al-Mutaffifin|Al-Inshiqaq|Al-Buruj|At-Tariq|Al-A'la|Al-Ghashiyah|Al-Fajr|Al-Balad|Ash-Shams|Al-Layl|Ad-Duha|Ash-Sharh|At-Tin|Al-'Alaq|Al-Qadr|Al-Bayyinah|Az-Zalzalah|Al-'Adiyat|Al-Qari'ah|At-Takathur|Al-'Asr|Al-Humazah|Al-Fil|Quraysh|Al-Ma'un|Al-Kawthar|Al-Kafirun|An-Nasr|Al-Masad|Al-Ikhlas|Al-Falaq|An-Nas".split('|');
@@ -276,6 +284,11 @@ $('sr').onclick=()=>{
   const r=el('div','row');const cn=el('button','b',t('close'));cn.onclick=close;r.appendChild(cn);w.appendChild(r);
   open(w);setTimeout(()=>{const c=lst.querySelector('.cu');if(c)c.scrollIntoView({block:'center'})},50);
 };
+$('th').onclick=()=>{
+  const w=el('div');w.appendChild(el('h3',null,t('theme_title')));
+  [['green','th_green','#2f6046'],['blue','th_blue','#0c2a80']].forEach(([c,k,col])=>{const r=el('div','su'+(c===theme?' cu':''));const d=el('div','no');d.style.background=col;d.style.boxShadow='inset 0 1px 0 rgba(255,255,255,.35),0 2px 4px rgba(0,0,0,.4)';r.appendChild(d);const nmE=el('div','nm');nmE.appendChild(el('b',null,t(k)));r.appendChild(nmE);r.onclick=()=>{setTheme(c);close()};w.appendChild(r)});
+  const r=el('div','row');const cn=el('button','b',t('close'));cn.onclick=close;r.appendChild(cn);w.appendChild(r);open(w);
+};
 $('lg').onclick=()=>{
   const w=el('div');w.appendChild(el('h3',null,t('lang_title')));
   LANGS.forEach(([c,label,code])=>{const r=el('div','su'+(c===lang?' cu':''));r.appendChild(el('div','no',code));const nmE=el('div','nm');nmE.appendChild(el('b',null,label));r.appendChild(nmE);r.onclick=()=>{setLang(c);close()};w.appendChild(r)});
@@ -284,15 +297,16 @@ $('lg').onclick=()=>{
 // ===== Справка (первый запуск и кнопка «?») =====
 const H={
  ru:{edge_next:'Прокрутите ещё раз — следующая страница',edge_prev:'Прокрутите ещё раз — предыдущая страница',use_scroll:'Прокрутка: страницы идут непрерывной лентой — листайте вверх и вниз, следующая страница продолжается сама, без остановок.',help_title:'Как пользоваться',inst_title:'Установка на телефон',inst_android:'Android: откройте сайт в браузере Chrome → меню ⋮ (три точки) → «Установить приложение» или «Добавить на главный экран».',inst_ios:'iPhone: откройте сайт в Safari → кнопка «Поделиться» (квадрат со стрелкой) → «На экран «Домой»» → «Добавить».',inst_browser:'Важно: на Android используйте Chrome, на iPhone — Safari.',use_title:'Управление',
-  use_swipe:'Кнопки в панели: левая ‹ — следующая страница, правая › — предыдущая (Коран читается справа налево).',use_panel:'Панель: верхняя панель всегда на виду — в ней номер страницы, метки, суры, язык и масштаб.',use_mark:'Метка (закладка): кнопка с закладкой ставит метку там, где вы остановились; можно выбрать цвет и написать комментарий (например, имя суры). Ниже — список всех меток, нажатие переносит к месту.',use_surah:'Суры: кнопка справа с названием суры открывает список; введите 1–3 буквы или номер для поиска.',use_lang:'Язык: кнопка с глобусом — узбекский (лотин/кирилл), русский, английский. Кнопка ⤢ — масштаб страницы.',use_save:'Приложение запоминает страницу и место, где вы остановились, и открывает книгу там же.',use_upd:'Обновления: слева в панели видна версия; когда выходит новая, появляется «↻ Есть обновление» — нажмите.',got_it:'Понятно',help_tip:'Справка'},
+  use_swipe:'Кнопки в панели: левая ‹ — следующая страница, правая › — предыдущая (Коран читается справа налево).',use_panel:'Панель: верхняя панель всегда на виду — в ней номер страницы, метки, суры, язык и масштаб.',use_mark:'Метка (закладка): кнопка с закладкой ставит метку там, где вы остановились; можно выбрать цвет и написать комментарий (например, имя суры). Ниже — список всех меток, нажатие переносит к месту.',use_surah:'Суры: кнопка справа с названием суры открывает список; введите 1–3 буквы или номер для поиска.',use_lang:'Язык: кнопка с глобусом — узбекский (лотин/кирилл), русский, английский. Кнопка с палитрой — тема (зелёная или синяя). Кнопка ⤢ — масштаб страницы.',use_save:'Приложение запоминает страницу и место, где вы остановились, и открывает книгу там же.',use_upd:'Обновления: слева в панели видна версия; когда выходит новая, появляется «↻ Есть обновление» — нажмите.',got_it:'Понятно',help_tip:'Справка'},
  uzl:{edge_next:"Yana suring — keyingi bet",edge_prev:"Yana suring — oldingi bet",use_scroll:"Aylantirish: sahifalar uzluksiz tasma bo'lib keladi — yuqori va pastga suring, keyingi bet to'xtamasdan davom etadi.",help_title:"Qo'llanma",inst_title:"Telefonga o'rnatish",inst_android:"Android: saytni Chrome brauzerida oching → ⋮ menyusi (uch nuqta) → «Ilovani o'rnatish» yoki «Bosh ekranga qo'shish».",inst_ios:"iPhone: saytni Safari'da oching → «Ulashish» tugmasi (o'qli kvadrat) → «Bosh ekranga qo'shish» → «Qo'shish».",inst_browser:"Muhim: Android'da Chrome, iPhone'da Safari'dan foydalaning.",use_title:"Boshqaruv",
-  use_swipe:"Panel tugmalari: chap ‹ — keyingi bet, o'ng › — oldingi bet (Qur'on o'ngdan chapga o'qiladi).",use_panel:"Panel: yuqori panel doim ko'rinib turadi — unda bet raqami, belgilar, suralar, til va masshtab.",use_mark:"Belgi (xatcho'p): xatcho'p tugmasi to'xtagan joyingizga belgi qo'yadi; rang tanlab, izoh yozish mumkin (masalan, sura nomi). Pastda barcha belgilar ro'yxati, bosilsa o'sha joyga o'tadi.",use_surah:"Suralar: o'ngdagi sura nomi tugmasi ro'yxatni ochadi; qidirish uchun 1–3 harf yoki raqam kiriting.",use_lang:"Til: globus tugmasi — o'zbekcha (lotin/kirill), ruscha, inglizcha. ⤢ tugmasi — sahifa masshtabi.",use_save:"Ilova to'xtagan bet va joyingizni eslab qoladi va kitobni o'sha yerdan ochadi.",use_upd:"Yangilanishlar: panelning chap tomonida versiya ko'rinadi; yangisi chiqsa «↻ Yangilanish bor» paydo bo'ladi — bosing.",got_it:"Tushunarli",help_tip:"Qo'llanma"},
+  use_swipe:"Panel tugmalari: chap ‹ — keyingi bet, o'ng › — oldingi bet (Qur'on o'ngdan chapga o'qiladi).",use_panel:"Panel: yuqori panel doim ko'rinib turadi — unda bet raqami, belgilar, suralar, til va masshtab.",use_mark:"Belgi (xatcho'p): xatcho'p tugmasi to'xtagan joyingizga belgi qo'yadi; rang tanlab, izoh yozish mumkin (masalan, sura nomi). Pastda barcha belgilar ro'yxati, bosilsa o'sha joyga o'tadi.",use_surah:"Suralar: o'ngdagi sura nomi tugmasi ro'yxatni ochadi; qidirish uchun 1–3 harf yoki raqam kiriting.",use_lang:"Til: globus tugmasi — o'zbekcha (lotin/kirill), ruscha, inglizcha. Palitra tugmasi — mavzu (yashil yoki ko'k). ⤢ tugmasi — sahifa masshtabi.",use_save:"Ilova to'xtagan bet va joyingizni eslab qoladi va kitobni o'sha yerdan ochadi.",use_upd:"Yangilanishlar: panelning chap tomonida versiya ko'rinadi; yangisi chiqsa «↻ Yangilanish bor» paydo bo'ladi — bosing.",got_it:"Tushunarli",help_tip:"Qo'llanma"},
  uzc:{edge_next:'Яна суринг — кейинги бет',edge_prev:'Яна суринг — олдинги бет',use_scroll:'Айлантириш: саҳифалар узлуксиз тасма бўлиб келади — юқори ва пастга суринг, кейинги бет тўхтамасдан давом этади.',help_title:'Қўлланма',inst_title:'Телефонга ўрнатиш',inst_android:'Android: сайтни Chrome браузерида очинг → ⋮ меню (уч нуқта) → «Иловани ўрнатиш» ёки «Бош экранга қўшиш».',inst_ios:'iPhone: сайтни Safari’да очинг → «Улашиш» тугмаси (ўқли квадрат) → «Бош экранга қўшиш» → «Қўшиш».',inst_browser:'Муҳим: Android’да Chrome, iPhone’да Safari’дан фойдаланинг.',use_title:'Бошқарув',
-  use_swipe:'Панель тугмалари: чап ‹ — кейинги бет, ўнг › — олдинги бет (Қуръон ўнгдан чапга ўқилади).',use_panel:'Панель: юқори панель доим кўриниб туради — унда бет рақами, белгилар, суралар, тил ва масштаб.',use_mark:'Белги (хатчўп): хатчўп тугмаси тўхтаган жойингизга белги қўяди; ранг танлаб, изоҳ ёзиш мумкин (масалан, сура номи). Пастда барча белгилар рўйхати, босилса ўша жойга ўтади.',use_surah:'Суралар: ўнгдаги сура номи тугмаси рўйхатни очади; қидириш учун 1–3 ҳарф ёки рақам киритинг.',use_lang:'Тил: глобус тугмаси — ўзбекча (лотин/кирилл), русча, инглизча. ⤢ тугмаси — саҳифа масштаби.',use_save:'Илова тўхтаган бет ва жойингизни эслаб қолади ва китобни ўша ердан очади.',use_upd:'Янгиланишлар: панелнинг чап томонида версия кўринади; янгиси чиқса «↻ Янгиланиш бор» пайдо бўлади — босинг.',got_it:'Тушунарли',help_tip:'Қўлланма'},
+  use_swipe:'Панель тугмалари: чап ‹ — кейинги бет, ўнг › — олдинги бет (Қуръон ўнгдан чапга ўқилади).',use_panel:'Панель: юқори панель доим кўриниб туради — унда бет рақами, белгилар, суралар, тил ва масштаб.',use_mark:'Белги (хатчўп): хатчўп тугмаси тўхтаган жойингизга белги қўяди; ранг танлаб, изоҳ ёзиш мумкин (масалан, сура номи). Пастда барча белгилар рўйхати, босилса ўша жойга ўтади.',use_surah:'Суралар: ўнгдаги сура номи тугмаси рўйхатни очади; қидириш учун 1–3 ҳарф ёки рақам киритинг.',use_lang:'Тил: глобус тугмаси — ўзбекча (лотин/кирилл), русча, инглизча. Палитра тугмаси — мавзу (яшил ёки кўк). ⤢ тугмаси — саҳифа масштаби.',use_save:'Илова тўхтаган бет ва жойингизни эслаб қолади ва китобни ўша ердан очади.',use_upd:'Янгиланишлар: панелнинг чап томонида версия кўринади; янгиси чиқса «↻ Янгиланиш бор» пайдо бўлади — босинг.',got_it:'Тушунарли',help_tip:'Қўлланма'},
  en:{edge_next:'Scroll again — next page',edge_prev:'Scroll again — previous page',use_scroll:'Scrolling: the pages run as one continuous strip — just scroll up and down, the next page continues on its own without stopping.',help_title:'How to use',inst_title:'Install on your phone',inst_android:'Android: open the site in Chrome → ⋮ menu (three dots) → “Install app” or “Add to Home screen”.',inst_ios:'iPhone: open the site in Safari → Share button (square with arrow) → “Add to Home Screen” → “Add”.',inst_browser:'Important: use Chrome on Android and Safari on iPhone.',use_title:'Controls',
-  use_swipe:'Panel buttons: left ‹ — next page, right › — previous page (the Quran is read right to left).',use_panel:'Panel: the top panel is always visible — page number, bookmarks, surahs, language and scale.',use_mark:'Bookmarks: the bookmark button marks the place where you stopped; pick a colour and add a note (e.g. a surah name). The list below opens any bookmark.',use_surah:'Surahs: the button on the right opens the list; type 1–3 letters or a number to search.',use_lang:'Language: the globe button — Uzbek (Latin/Cyrillic), Russian, English. The ⤢ button changes page scale.',use_save:'The app remembers the page and the spot where you stopped and reopens the book there.',use_upd:'Updates: the version is shown at the left of the panel; when a new one is out, “↻ Update available” appears — tap it.',got_it:'Got it',help_tip:'Help'}
+  use_swipe:'Panel buttons: left ‹ — next page, right › — previous page (the Quran is read right to left).',use_panel:'Panel: the top panel is always visible — page number, bookmarks, surahs, language and scale.',use_mark:'Bookmarks: the bookmark button marks the place where you stopped; pick a colour and add a note (e.g. a surah name). The list below opens any bookmark.',use_surah:'Surahs: the button on the right opens the list; type 1–3 letters or a number to search.',use_lang:'Language: the globe button — Uzbek (Latin/Cyrillic), Russian, English. The palette button — theme (green or blue). The ⤢ button changes page scale.',use_save:'The app remembers the page and the spot where you stopped and reopens the book there.',use_upd:'Updates: the version is shown at the left of the panel; when a new one is out, “↻ Update available” appears — tap it.',got_it:'Got it',help_tip:'Help'}
 };
-for(const l in H)Object.assign(T[l],H[l]);
+const TT={ru:{theme_title:'Тема',th_green:'Зелёная',th_blue:'Синяя'},uzl:{theme_title:'Mavzu',th_green:'Yashil',th_blue:"Ko'k"},uzc:{theme_title:'Мавзу',th_green:'Яшил',th_blue:'Кўк'},en:{theme_title:'Theme',th_green:'Green',th_blue:'Blue'}};
+for(const l in H)Object.assign(T[l],H[l],TT[l]);
 const UA=navigator.userAgent||'';
 const isIOS=/iPad|iPhone|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const isAndroid=/Android/.test(UA);
